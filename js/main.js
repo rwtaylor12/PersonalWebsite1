@@ -88,7 +88,17 @@ const BANNER_SECONDS = 6;
 function initBanner() {
   const root = document.querySelector("[data-banner]");
   if (!root) return;
-  const slides = [...root.querySelectorAll(".banner-slides img")];
+  // Each <img> becomes a slide: the whole photo, plus a blurred copy filling the space behind it.
+  const slides = [...root.querySelectorAll(".banner-slides img")].map((img) => {
+    const slide = document.createElement("div");
+    slide.className = "banner-slide";
+    const backdrop = img.cloneNode();
+    backdrop.className = "banner-backdrop";
+    img.classList.add("banner-photo");
+    img.replaceWith(slide);
+    slide.append(backdrop, img);
+    return slide;
+  });
   if (!slides.length) return;
   const dots = root.querySelector(".banner-dots");
   dots.innerHTML = slides
