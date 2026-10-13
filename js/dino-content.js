@@ -24,15 +24,13 @@ window.DINO_CONTENT = {
   // { title: "song", artist: "who", url: "https://www.youtube.com/watch?v=..." }
   // Use the exact video link (Share → Copy link on YouTube). youtu.be/... links work too.
   songs: [
-    { title: "The Road Goes On Forever", artist: "Robert Earl Keen", url: "https://www.youtube.com/results?search_query=Robert+Earl+Keen+The+Road+Goes+On+Forever" },
-    { title: "Wondering Why", artist: "The Red Clay Strays", url: "https://www.youtube.com/results?search_query=Red+Clay+Strays+Wondering+Why" },
-    { title: "All Your'n", artist: "Tyler Childers", url: "https://www.youtube.com/results?search_query=Tyler+Childers+All+Your%27n" },
-    { title: "Passage du Desir", artist: "Johnny Blue Skies", url: "https://www.youtube.com/results?search_query=Johnny+Blue+Skies+Passage+du+Desir" },
-  ],
-
-  // { title: "what it is", url: "https://www.youtube.com/watch?v=..." }
-  videos: [
-    { title: "Blaze and the Monster Machines theme song (Owen-approved)", url: "https://www.youtube.com/results?search_query=Blaze+and+the+Monster+Machines+theme+song" },
+    { title: "Night Moves", artist: "Bob Seger", url: "https://www.youtube.com/watch?v=xH7cSSKnkL4" },
+    { title: "Turtles All the Way Down", artist: "Sturgill Simpson", url: "https://www.youtube.com/watch?v=6gBV-Nzq7Pg" },
+    { title: "Fishin' in the Dark", artist: "Nitty Gritty Dirt Band", url: "https://www.youtube.com/watch?v=jBRfkxUAyOk" },
+    { title: "Til' You Can't", artist: "Cody Johnson", url: "https://www.youtube.com/watch?v=v2LixP7n_hM" },
+    { title: "Ain't It Fun", artist: "Paramore", url: "https://www.youtube.com/watch?v=yaboGc0WcwM" },
+    { title: "Golden (Kellyoke)", artist: "Kelly Clarkson", url: "https://www.youtube.com/watch?v=py_P2TI-gNg" },
+    { title: "BOP (Clean)", artist: "DaBaby", url: "https://www.youtube.com/watch?v=jgb2NG_6HTQ" },
   ],
 
   // { src: "path to the image", caption: "a short caption" }

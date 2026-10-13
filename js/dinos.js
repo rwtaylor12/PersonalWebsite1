@@ -1,7 +1,7 @@
 /* ==========================================================================
    EASTER EGG: Owen & Reid
    Two cartoon dinosaurs who sometimes pop up and offer a visitor a quote,
-   riddle, song, video or photo. Content lives in js/dino-content.js.
+   riddle, song or photo. Content lives in js/dino-content.js.
 
    Secrets: type "rawr" anywhere to summon them, or add ?dinos to a page URL.
    ========================================================================== */
@@ -19,15 +19,13 @@
     quotes: "Want a quote to chew on?",
     riddles: "Want a riddle? Bet you can't solve it.",
     songs: "Want a song to listen to?",
-    videos: "Want a video to watch?",
     photos: "Want to see a photo?",
   };
-  const NOUN = { quotes: "quote", riddles: "riddle", songs: "song", videos: "video", photos: "photo" };
+  const NOUN = { quotes: "quote", riddles: "riddle", songs: "song", photos: "photo" };
   const INSTEAD = {
     quotes: "Okay, how about a quote instead?",
     riddles: "How about a riddle? They're tricky.",
     songs: "How about a song suggestion?",
-    videos: "How about a video?",
     photos: "Want to see a photo instead?",
   };
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -181,9 +179,9 @@
       reveal.type = "button";
       reveal.addEventListener("click", () => { answer.hidden = false; reveal.remove(); });
       parts.push(reveal, answer);
-    } else if (category === "songs" || category === "videos") {
-      parts.push(el("p", category === "songs" ? "Try this one:" : "Watch this:", "dino-meta"));
-      const a = el("a", category === "songs" ? `${item.title}${item.artist ? ` — ${item.artist}` : ""}` : item.title, "dino-media");
+    } else if (category === "songs") {
+      parts.push(el("p", "Try this one:", "dino-meta"));
+      const a = el("a", `${item.title}${item.artist ? ` — ${item.artist}` : ""}`, "dino-media");
       a.href = item.url; a.target = "_blank"; a.rel = "noopener";
       parts.push(a);
     } else if (category === "photos") {
