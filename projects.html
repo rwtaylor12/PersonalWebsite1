@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects · Your Name</title>
+  <meta name="description" content="Projects by Your Name.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <section>
+      <p class="eyebrow">Projects</p>
+      <h1>Things I've made</h1>
+      <p class="lead">A mix of work, school and side projects. Filter by topic below.</p>
+    </section>
+
+    <section style="margin-top: 32px">
+      <!-- Filter buttons are generated automatically from each card's data-tags. -->
+      <div class="filter-bar" data-filter-bar></div>
+
+      <!--
+        TO ADD A PROJECT: copy one <article> block, then change the text,
+        links and data-tags (comma-separated). Tags also show at the bottom of the card.
+        For a screenshot, replace the .project-thumb div with:
+        <img class="project-thumb" src="assets/my-project.png" alt="Screenshot of ...">
+      -->
+      <div class="grid">
+        <article class="card project-card" data-tags="Web, AI">
+          <div class="project-thumb" aria-hidden="true">🌐</div>
+          <h3>This website</h3>
+          <p>A hand-built personal site made by pairing with an AI coding assistant. No frameworks — just HTML, CSS and a little JavaScript.</p>
+          <div class="card-links">
+            <a href="https://github.com/rwtaylor12/PersonalWebsite1" target="_blank" rel="noopener">Code</a>
+            <a href="ai.html#build-log">How I built it</a>
+          </div>
+          <div class="tags"><span class="tag">Web</span><span class="tag">AI</span></div>
+        </article>
+
+        <article class="card project-card" data-tags="AI, Automation">
+          <div class="project-thumb" aria-hidden="true">⚙️</div>
+          <h3>Project title</h3>
+          <p>One or two sentences: the problem, what you built, and the result. Numbers help (e.g. "saved 3 hours a week").</p>
+          <div class="card-links">
+            <a href="#">Demo</a>
+            <a href="#">Write-up</a>
+          </div>
+          <div class="tags"><span class="tag">AI</span><span class="tag">Automation</span></div>
+        </article>
+
+        <article class="card project-card" data-tags="Data">
+          <div class="project-thumb" aria-hidden="true">📊</div>
+          <h3>Project title</h3>
+          <p>Describe a school, work or personal project. What was your role? What did you learn?</p>
+          <div class="card-links">
+            <a href="#">Details</a>
+          </div>
+          <div class="tags"><span class="tag">Data</span></div>
+        </article>
+
+        <article class="card project-card" data-tags="Creative">
+          <div class="project-thumb" aria-hidden="true">🎨</div>
+          <h3>Project title</h3>
+          <p>Projects don't have to be code. Writing, design, events, a club you ran — all of it shows who you are.</p>
+          <div class="card-links">
+            <a href="#">See more</a>
+          </div>
+          <div class="tags"><span class="tag">Creative</span></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>

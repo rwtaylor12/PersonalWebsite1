@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Lab · Your Name</title>
+  <meta name="description" content="How Your Name is learning to prompt, build and code with AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <section>
+      <p class="eyebrow">AI Lab</p>
+      <h1>Learning to build with AI</h1>
+      <p class="lead">
+        I'm early in my AI journey, and this page is where I show my work as I go:
+        the prompts I write, what I've built, and what I'm learning along the way.
+      </p>
+      <div class="callout">
+        <p><b>This whole website is an AI experiment.</b> I built it by pairing with an AI coding assistant,
+        then edited and personalized it myself. The <a href="#build-log">build log</a> below shows how.</p>
+      </div>
+    </section>
+
+    <!-- ===== INTERACTIVE: anatomy of a good prompt ===== -->
+    <section>
+      <p class="eyebrow">What I've learned</p>
+      <h2>Anatomy of a good prompt</h2>
+      <p class="muted">Click each highlighted part to see why it's there.</p>
+      <div class="card" data-anatomy>
+        <div class="anatomy-prompt">
+          <span data-part data-note="ROLE / CONTEXT — Telling the AI who it's helping and why sets the tone and the level of detail. The more it knows about the situation, the less it has to guess.">I'm a recent graduate applying for junior analyst roles.</span>
+          <span data-part data-note="TASK — One clear verb and a specific deliverable. 'Rewrite these three bullets' beats 'help with my resume'.">Rewrite the three resume bullets below so they lead with impact.</span>
+          <span data-part data-note="CONSTRAINTS — Limits stop the AI from over-delivering or drifting. Length, tone and what to avoid all count.">Keep each under 20 words, use active verbs, and don't invent numbers I didn't give you.</span>
+          <span data-part data-note="FORMAT — Saying exactly what the output should look like makes it easy to use straight away.">Return them as a bulleted list, then one sentence on what you changed.</span>
+          <span data-part data-note="INPUT — Put the material it should work on last, clearly separated so it can't be confused with the instructions.">&lt;bullets&gt; … &lt;/bullets&gt;</span>
+        </div>
+        <p class="anatomy-explain muted" data-anatomy-explain aria-live="polite">👆 Pick a part of the prompt.</p>
+      </div>
+    </section>
+
+    <!-- ===== PROMPT LIBRARY — add your favourite prompts here ===== -->
+    <section>
+      <p class="eyebrow">Prompt library</p>
+      <h2>Prompts I actually use</h2>
+      <div class="grid">
+        <article class="card prompt-card">
+          <span class="tag">Learning</span>
+          <h3>Explain it back to me</h3>
+          <pre id="p1">Explain [topic] to me as if I'm smart but new to it. Use one concrete example. Then ask me 3 questions to check I understood, one at a time, and tell me what I got wrong.</pre>
+          <button class="btn btn-ghost" data-copy="p1">Copy prompt</button>
+        </article>
+        <article class="card prompt-card">
+          <span class="tag">Writing</span>
+          <h3>Tough-love editor</h3>
+          <pre id="p2">You're a blunt editor. Point out the 3 weakest sentences in the text below and explain why. Don't rewrite anything yet — I want to fix it myself first.</pre>
+          <button class="btn btn-ghost" data-copy="p2">Copy prompt</button>
+        </article>
+        <article class="card prompt-card">
+          <span class="tag">Coding</span>
+          <h3>Plan before code</h3>
+          <pre id="p3">Before writing any code, describe your plan in plain English: which files you'll change, what each change does, and any risks. Wait for my OK before you start.</pre>
+          <button class="btn btn-ghost" data-copy="p3">Copy prompt</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== BUILD LOG — keep adding entries as you change the site ===== -->
+    <section id="build-log">
+      <p class="eyebrow">Build log</p>
+      <h2>How this site was built</h2>
+      <p class="muted">Every change to this site starts with a prompt. Here's the trail.</p>
+
+      <details open>
+        <summary>v1 — The first prompt</summary>
+        <p>The very first thing I typed into Claude Code:</p>
+        <pre class="anatomy-prompt" style="line-height:1.6">I am wanting to build a personal website, a few different tabs/landing pages to show off my personality, projects, CV/resume, and show my (currently limited) ability to prompt/use/code with AI.</pre>
+        <p><b>What came back:</b> a four-page static site (About, Projects, Resume, AI Lab) using plain HTML, CSS and JavaScript, plus a dark mode and a printable resume.</p>
+        <p><b>What I learned:</b> a short prompt works, but the AI has to guess a lot (my name, my style, my projects). My next prompts give it much more context.</p>
+      </details>
+
+      <details>
+        <summary>v2 — Make it mine (add your next step here)</summary>
+        <p>Write the prompt you used, what changed, and what you'd do differently next time.</p>
+      </details>
+    </section>
+
+    <!-- ===== PRINCIPLES ===== -->
+    <section>
+      <p class="eyebrow">Rules of thumb</p>
+      <h2>What I've picked up so far</h2>
+      <div class="grid">
+        <div class="card"><h3>1. Context beats cleverness</h3><p>Most bad answers come from missing information, not from bad wording.</p></div>
+        <div class="card"><h3>2. Ask for a plan first</h3><p>Reviewing a plan is faster than untangling code I didn't ask for.</p></div>
+        <div class="card"><h3>3. Check its work</h3><p>AI is confident even when it's wrong. I verify facts and test anything it builds.</p></div>
+        <div class="card"><h3>4. Iterate in small steps</h3><p>One change per prompt makes it easy to see what worked and roll back what didn't.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resume · Your Name</title>
+  <meta name="description" content="Resume / CV of Your Name.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <section class="resume-header">
+      <div>
+        <p class="eyebrow no-print">Resume</p>
+        <h1>Your Name</h1>
+        <p class="muted">Your Title · City, Country · you@example.com</p>
+      </div>
+      <div class="btn-row no-print" style="margin-top: 0">
+        <!-- To offer a download, put your PDF at assets/resume.pdf and uncomment the link below. -->
+        <!-- <a class="btn" href="assets/resume.pdf" download>Download PDF</a> -->
+        <button class="btn" type="button" data-print>Print / Save as PDF</button>
+      </div>
+    </section>
+
+    <section style="margin-top: 40px">
+      <h2>Summary</h2>
+      <p class="lead">Two or three lines on who you are professionally, your strongest skills, and what you're looking for next.</p>
+    </section>
+
+    <!-- ===== EXPERIENCE — newest first. Copy a .timeline-item to add more. ===== -->
+    <section>
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-meta">
+            <h3>Job Title · Company</h3>
+            <span class="when">2024 — Present</span>
+          </div>
+          <ul>
+            <li>Start each bullet with a strong verb and include an outcome.</li>
+            <li>Quantify where you can: "Cut report turnaround from 3 days to 4 hours."</li>
+            <li>Mention tools — including AI tools — where relevant.</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-meta">
+            <h3>Job Title · Company</h3>
+            <span class="when">2022 — 2024</span>
+          </div>
+          <ul>
+            <li>Achievement or responsibility.</li>
+            <li>Achievement or responsibility.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-meta">
+            <h3>Degree · University</h3>
+            <span class="when">2018 — 2022</span>
+          </div>
+          <p class="muted">Honours, relevant coursework, clubs or societies.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="card">
+          <h3>Technical</h3>
+          <div class="tags"><span class="tag">Excel</span><span class="tag">HTML/CSS</span><span class="tag">Skill</span></div>
+        </div>
+        <div class="card">
+          <h3>AI tools</h3>
+          <div class="tags"><span class="tag">Claude</span><span class="tag">Claude Code</span><span class="tag">Prompt design</span></div>
+        </div>
+        <div class="card">
+          <h3>Soft skills</h3>
+          <div class="tags"><span class="tag">Communication</span><span class="tag">Leadership</span><span class="tag">Skill</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>
