@@ -20,7 +20,8 @@ A simple, framework-free personal site with four pages:
    - **Timing:** `BANNER_SECONDS` and `ROLODEX_SECONDS` in `js/main.js`.
 4. **Resume PDF:** replace `assets/Ryan-Taylor-Resume.pdf` with your new file (keep the same name).
 5. **Contact form:** messages go through [FormSubmit](https://formsubmit.co) to the address in `contact.html` (`data-endpoint`). The first message ever sent triggers an activation email; click **Activate** once.
-6. **Colours:** change `--accent` (and friends) at the top of `css/style.css`.
+6. **Owen & Reid (easter egg):** two cartoon dinosaurs that sometimes pop up offering a quote, riddle, song, video or photo. Edit what they offer in `js/dino-content.js`; tune how often they appear at the top of `js/dinos.js`. Type **rawr** on any page (or add `?dinos` to the URL) to summon them.
+7. **Colours:** change `--accent` (and friends) at the top of `css/style.css`.
 
 Search for `Your Name` and `you@example.com` to catch every placeholder.
 

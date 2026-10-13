@@ -257,7 +257,18 @@ function initCopyButtons() {
   });
 }
 
+/* ---------- Easter egg: load Owen & Reid on every page ---------- */
+function loadDinos() {
+  for (const src of ["js/dino-content.js", "js/dinos.js"]) {
+    const s = document.createElement("script");
+    s.src = src;
+    s.async = false; // keep order: content first, then the dinosaurs
+    document.body.append(s);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  loadDinos();
   renderHeader();
   renderFooter();
   initBanner();
