@@ -20,13 +20,18 @@
          BANNER — rotating background images behind your name.
          TO CHANGE THE PHOTOS: put your images in assets/banner/ and edit the
          <img> lines below. Add or remove as many as you like; they rotate in order.
-         Wide landscape photos (about 1600×900 or larger) look best.
+         Photos are shown semi-transparent; adjust --banner-photo-opacity in css/style.css.
          ===================================================================== -->
     <section class="banner" data-banner aria-label="Introduction">
       <div class="banner-slides">
-        <img src="assets/banner/lake-dawn.svg" alt="">
-        <img src="assets/banner/ridge-dusk.svg" alt="">
-        <img src="assets/banner/night-sky.svg" alt="">
+        <!-- style="object-position: X% Y%" picks which part of each photo stays in view. -->
+        <img src="assets/banner/family.jpg" alt="" style="object-position: 50% 30%">
+        <img src="assets/banner/bass.jpg" alt="" style="object-position: 50% 22%">
+        <img src="assets/banner/tailgate.jpg" alt="" style="object-position: 50% 45%">
+        <img src="assets/banner/casting.jpg" alt="" style="object-position: 50% 40%">
+        <img src="assets/banner/beach.jpg" alt="" style="object-position: 50% 14%">
+        <img src="assets/banner/little-slugger.jpg" alt="" style="object-position: 50% 48%">
+        <img src="assets/banner/wakesurf.jpg" alt="" style="object-position: 50% 16%">
       </div>
 
       <div class="container banner-content">
