@@ -22,7 +22,29 @@
       <p class="lead">A mix of work, school and side projects. Filter by topic below.</p>
     </section>
 
-    <section style="margin-top: 32px">
+    <!-- ===== FEATURED: 5×5 workout tracker (lives in projects/5x5-tracker.html) ===== -->
+    <section class="featured" style="margin-top: 40px">
+      <div class="featured-text">
+        <p class="eyebrow">Featured · Built with AI</p>
+        <h2>5×5 Workout Tracker</h2>
+        <p>A small app for following the StrongLifts 5×5 program. Log a session and it works out next time's weights for you: add weight after a clean workout, repeat after missed reps, and drop about 10% after three misses in a row.</p>
+        <ul class="featured-list">
+          <li>Plate math for every lift, so you know what to load on each side of the bar</li>
+          <li>Progress charts for each lift, plus body weight and how you felt</li>
+          <li>Full history with edit and delete</li>
+        </ul>
+        <p class="muted">It's loaded with sample workouts so you can see how it works. Try logging one yourself. It saves in your browser only.</p>
+        <div class="btn-row">
+          <a class="btn" href="projects/5x5-tracker.html" target="_blank" rel="noopener">Open full screen</a>
+        </div>
+      </div>
+      <div class="device">
+        <iframe src="projects/5x5-tracker.html" title="5×5 Workout Tracker, live demo" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <section style="margin-top: 72px">
+      <h2>More projects</h2>
       <!-- Filter buttons are generated automatically from each card's data-tags. -->
       <div class="filter-bar" data-filter-bar></div>
 
@@ -42,6 +64,16 @@
             <a href="ai.html#build-log">How I built it</a>
           </div>
           <div class="tags"><span class="tag">Web</span><span class="tag">AI</span></div>
+        </article>
+
+        <article class="card project-card" data-tags="AI, Fitness">
+          <div class="project-thumb" aria-hidden="true"></div>
+          <h3>5×5 Workout Tracker</h3>
+          <p>A StrongLifts 5×5 log that plans each workout's weights, does the plate math, and charts progress.</p>
+          <div class="card-links">
+            <a href="projects/5x5-tracker.html" target="_blank" rel="noopener">Try it</a>
+          </div>
+          <div class="tags"><span class="tag">AI</span><span class="tag">Fitness</span></div>
         </article>
 
         <article class="card project-card" data-tags="AI, Automation">
