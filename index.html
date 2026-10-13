@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About · Ryan W Taylor</title>
+  <title>Ryan W Taylor</title>
   <meta name="description" content="Personal website of Ryan W Taylor — Business Faculty at SAU Tech, dad, Razorback fan and bass fisherman.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,108 +12,100 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
-<body>
+<body class="home">
   <header id="site-header"></header>
 
-  <main class="container">
-    <!-- ===== HERO ===== -->
-    <section class="hero">
-      <div>
-        <p class="eyebrow">Hi, I'm</p>
-        <h1>Ryan W Taylor.</h1>
-        <p class="lead">
-          <a href="https://www.youtube.com/results?search_query=Robert+Earl+Keen+The+Road+Goes+On+Forever" target="_blank" rel="noopener">The road goes on forever, the party never ends.</a>
+  <main>
+    <!-- =====================================================================
+         BANNER — rotating background images behind your name.
+         TO CHANGE THE PHOTOS: put your images in assets/banner/ and edit the
+         <img> lines below. Add or remove as many as you like; they rotate in order.
+         Wide landscape photos (about 1600×900 or larger) look best.
+         ===================================================================== -->
+    <section class="banner" data-banner aria-label="Introduction">
+      <div class="banner-slides">
+        <img src="assets/banner/lake-dawn.svg" alt="">
+        <img src="assets/banner/ridge-dusk.svg" alt="">
+        <img src="assets/banner/night-sky.svg" alt="">
+      </div>
+
+      <div class="container banner-content">
+        <p class="banner-kicker">El Dorado, Arkansas</p>
+        <h1>Ryan W Taylor</h1>
+        <p class="banner-tagline">
+          <a href="https://www.youtube.com/results?search_query=Robert+Earl+Keen+The+Road+Goes+On+Forever" target="_blank" rel="noopener">The road goes on forever, the party never ends. <span aria-hidden="true">♪</span></a>
         </p>
+
+        <!-- ===== ABOUT ME ROLODEX — one fact per <li>; they flip every few seconds. Click to advance. ===== -->
+        <div class="rolodex" data-rolodex>
+          <span class="rolodex-label">I'm Ryan</span>
+          <button class="rolodex-window" type="button" aria-label="Next fact about Ryan">
+            <ul class="rolodex-cards">
+              <li>Business Faculty @ SAU Tech</li>
+              <li>Dad to Owen (4) &amp; Reid (1)</li>
+              <li>Husband to Haley (Age N/A)</li>
+              <li>Full-Time Razorback Fan</li>
+              <li>Bass fisherman</li>
+              <li>Will fish anywhere</li>
+              <li>Weekends at Lake Ouachita</li>
+              <li>Little league coach</li>
+              <li>Part-Time Runner</li>
+              <li>Hogs · Reds · Spurs</li>
+              <li>Reading <i>The Breaks of the Game</i></li>
+              <li>The human head weighs eight pounds</li>
+            </ul>
+          </button>
+          <span class="rolodex-count" aria-hidden="true"></span>
+        </div>
+
         <div class="btn-row">
-          <a class="btn" href="projects.html">See my projects</a>
-          <a class="btn btn-ghost" href="resume.html">Read my resume</a>
+          <a class="btn btn-light" href="projects.html">See my projects</a>
+          <a class="btn btn-outline-light" href="resume.html">Read my resume</a>
         </div>
       </div>
-      <!-- Swap the initials for a photo: <div class="avatar"><img src="assets/me.jpg" alt="Photo of Ryan W Taylor"></div> -->
-      <div class="avatar" aria-hidden="true">RWT</div>
+
+      <div class="banner-dots" role="tablist" aria-label="Choose banner image"></div>
     </section>
 
-    <!-- ===== ABOUT ===== -->
-    <section>
-      <p class="eyebrow">About me</p>
-      <h2>I'm Ryan.</h2>
-      <ul class="role-list">
-        <li>Business Faculty @ SAU Tech</li>
-        <li>Dad to Owen (4) &amp; Reid (1)</li>
-        <li>Husband to Haley (Age N/A)</li>
-        <li>Part-Time Runner, Full-Time Razorback Fan, little league coach, and bass fisherman</li>
-      </ul>
+    <!-- ===== TILES — links to the other pages ===== -->
+    <section class="container tiles-section">
+      <div class="tiles">
+        <a class="tile" href="projects.html">
+          <span class="tile-num">01</span>
+          <span class="tile-title">Projects</span>
+          <span class="tile-desc">Things I've built, taught and tinkered with.</span>
+          <span class="tile-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="tile" href="resume.html">
+          <span class="tile-num">02</span>
+          <span class="tile-title">Resume</span>
+          <span class="tile-desc">Where I've been: SAU Tech, Do College Better, the U of A.</span>
+          <span class="tile-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="tile" href="ai.html">
+          <span class="tile-num">03</span>
+          <span class="tile-title">AI Lab</span>
+          <span class="tile-desc">How I'm learning to prompt and build with AI, including this site.</span>
+          <span class="tile-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="tile" href="mailto:wryan.taylor12@gmail.com">
+          <span class="tile-num">04</span>
+          <span class="tile-title">Say hello</span>
+          <span class="tile-desc">Teaching, business, fishing spots, or AI. Drop me a line.</span>
+          <span class="tile-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
 
-      <h3 class="path-title">How I got here</h3>
-      <ol class="path">
-        <li><span class="when">2011</span>Parkers Chapel High School</li>
-        <li><span class="when">2015, 2016</span>University of Arkansas</li>
-        <li><span class="when">2016 – 2024</span>Do College Better</li>
-        <li><span class="when">Now</span>SAU Tech</li>
+    <!-- ===== HOW I GOT HERE ===== -->
+    <section class="container">
+      <p class="eyebrow">How I got here</p>
+      <ol class="journey">
+        <li><span class="when">2011</span><span class="where">Parkers Chapel High School</span></li>
+        <li><span class="when">2015, 2016</span><span class="where">University of Arkansas</span></li>
+        <li><span class="when">2016 – 2024</span><span class="where">Do College Better</span></li>
+        <li class="is-now"><span class="when">Now</span><span class="where">SAU Tech</span></li>
       </ol>
-    </section>
-
-    <!-- ===== PERSONALITY ===== -->
-    <section>
-      <p class="eyebrow">Beyond the resume</p>
-      <h2>A few things about me</h2>
-      <div class="grid grid-sm">
-        <article class="card">
-          <div class="card-emoji">🎣</div>
-          <h3>Bass fisherman</h3>
-          <p>Fishing anywhere I can, with weekends at Lake Ouachita.</p>
-        </article>
-        <article class="card">
-          <div class="card-emoji">🐗</div>
-          <h3>Full-time Razorback fan</h3>
-          <p>Watching the Hogs, plus the Reds and the Spurs.</p>
-        </article>
-        <article class="card">
-          <div class="card-emoji">⚾</div>
-          <h3>Dad life</h3>
-          <p>Playing with Owen and Reid. I also coach little league.</p>
-        </article>
-        <article class="card">
-          <div class="card-emoji">🏃</div>
-          <h3>Part-time runner</h3>
-          <p>Logging miles when I can.</p>
-        </article>
-        <article class="card">
-          <div class="card-emoji">📚</div>
-          <h3>Currently reading</h3>
-          <p><i>The Breaks of the Game</i> by David Halberstam.</p>
-        </article>
-        <article class="card">
-          <div class="card-emoji">🤖</div>
-          <h3>Learning right now</h3>
-          <p>Building with AI: prompting, coding with assistants, and shipping small things. <a href="ai.html">See the AI Lab →</a></p>
-        </article>
-        <article class="card">
-          <div class="card-emoji">🧠</div>
-          <h3>Fun fact</h3>
-          <p>The human head weighs eight pounds.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ===== QUICK FACTS ===== -->
-    <section>
-      <div class="grid">
-        <div class="card">
-          <h2>Quick facts</h2>
-          <ul class="fact-list">
-            <li><b>Based in</b> El Dorado, Arkansas</li>
-            <li><b>Day job</b> Business Faculty @ SAU Tech</li>
-            <li><b>Weekends</b> Lake Ouachita</li>
-            <li><b>Teams</b> Hogs · Reds · Spurs</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h2>Say hello</h2>
-          <p class="muted">The best way to reach me is email. Happy to talk teaching, business, fishing spots, or AI tools you're excited about.</p>
-          <a class="btn" href="mailto:wryan.taylor12@gmail.com">Email me</a>
-        </div>
-      </div>
     </section>
   </main>
 

@@ -78,6 +78,83 @@ function renderFooter() {
     </div>`;
 }
 
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pad = (n) => String(n).padStart(2, "0");
+
+/* ---------- Home: rotating banner images ---------- */
+const BANNER_SECONDS = 6;
+
+function initBanner() {
+  const root = document.querySelector("[data-banner]");
+  if (!root) return;
+  const slides = [...root.querySelectorAll(".banner-slides img")];
+  if (!slides.length) return;
+  const dots = root.querySelector(".banner-dots");
+  dots.innerHTML = slides
+    .map((_, n) => `<button type="button" role="tab" aria-label="Image ${n + 1}"></button>`)
+    .join("");
+  const dotBtns = [...dots.children];
+  if (slides.length < 2) dots.hidden = true;
+
+  let current = 0;
+  let timer;
+  const show = (n) => {
+    current = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle("is-active", k === current));
+    dotBtns.forEach((d, k) => d.setAttribute("aria-selected", String(k === current)));
+  };
+  const start = () => {
+    clearInterval(timer);
+    if (!reduceMotion && slides.length > 1) timer = setInterval(() => show(current + 1), BANNER_SECONDS * 1000);
+  };
+
+  dots.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+    show(dotBtns.indexOf(btn));
+    start();
+  });
+  show(0);
+  start();
+}
+
+/* ---------- Home: about-me rolodex ---------- */
+const ROLODEX_SECONDS = 3;
+
+function initRolodex() {
+  const root = document.querySelector("[data-rolodex]");
+  if (!root) return;
+  const cards = [...root.querySelectorAll(".rolodex-cards li")];
+  if (!cards.length) return;
+  const count = root.querySelector(".rolodex-count");
+
+  let current = 0;
+  let timer;
+  const show = (n) => {
+    const prev = cards[current];
+    current = n % cards.length;
+    cards.forEach((c) => c.classList.remove("is-active", "is-leaving"));
+    if (prev !== cards[current]) prev.classList.add("is-leaving");
+    cards[current].classList.add("is-active");
+    count.textContent = `${pad(current + 1)} / ${pad(cards.length)}`;
+  };
+  const stop = () => clearInterval(timer);
+  const start = () => {
+    stop();
+    if (!reduceMotion) timer = setInterval(() => show(current + 1), ROLODEX_SECONDS * 1000);
+  };
+
+  root.querySelector(".rolodex-window").addEventListener("click", () => {
+    show(current + 1);
+    start();
+  });
+  // Hold still while someone is reading it.
+  root.addEventListener("mouseenter", stop);
+  root.addEventListener("mouseleave", start);
+  show(0);
+  start();
+}
+
 /* ---------- Projects page: tag filter ---------- */
 function initProjectFilter() {
   const bar = document.querySelector("[data-filter-bar]");
@@ -133,6 +210,8 @@ function initCopyButtons() {
 document.addEventListener("DOMContentLoaded", () => {
   renderHeader();
   renderFooter();
+  initBanner();
+  initRolodex();
   initProjectFilter();
   initPromptAnatomy();
   initCopyButtons();
