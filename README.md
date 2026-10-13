@@ -6,7 +6,8 @@ A simple, framework-free personal site with four pages:
 | --- | --- | --- |
 | About | `index.html` | Intro, personality, quick facts |
 | Projects | `projects.html` | Project cards with tag filters |
-| Resume | `resume.html` | CV with a print / save-as-PDF button |
+| Resume | `resume.html` | Resume with one-click PDF view and download |
+| Say hello | `contact.html` | Contact form that emails Ryan |
 | AI Lab | `ai.html` | Prompt anatomy demo, prompt library, build log |
 
 ## Making it yours
@@ -16,8 +17,9 @@ A simple, framework-free personal site with four pages:
 3. **Banner photos:** put images in `assets/banner/` and edit the `<img>` lines at the top of `index.html` (add or remove as many as you like). Wide photos around 1600×900 look best. The three `.svg` files there are placeholders.
    - **"I'm Ryan" rolodex:** one fact per `<li>` just below the photos in `index.html`.
    - **Timing:** `BANNER_SECONDS` and `ROLODEX_SECONDS` in `js/main.js`.
-4. **Resume PDF:** drop your file at `assets/resume.pdf`, or use the page's "Print / Save as PDF" button.
-5. **Colours:** change `--accent` (and friends) at the top of `css/style.css`.
+4. **Resume PDF:** replace `assets/Ryan-Taylor-Resume.pdf` with your new file (keep the same name).
+5. **Contact form:** messages go through [FormSubmit](https://formsubmit.co) to the address in `contact.html` (`data-endpoint`). The first message ever sent triggers an activation email; click **Activate** once.
+6. **Colours:** change `--accent` (and friends) at the top of `css/style.css`.
 
 Search for `Your Name` and `you@example.com` to catch every placeholder.
 

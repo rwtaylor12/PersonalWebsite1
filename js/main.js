@@ -8,13 +8,14 @@ const SITE = {
   email: "wryan.taylor12@gmail.com",
   links: [
     { label: "GitHub", url: "https://github.com/rwtaylor12" },
-    // { label: "LinkedIn", url: "https://www.linkedin.com/in/your-handle" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/rwt12" },
   ],
   pages: [
     { label: "About", href: "index.html" },
     { label: "Projects", href: "projects.html" },
     { label: "Resume", href: "resume.html" },
     { label: "AI Lab", href: "ai.html" },
+    { label: "Say hello", href: "contact.html" },
   ],
 };
 
@@ -155,6 +156,45 @@ function initRolodex() {
   start();
 }
 
+/* ---------- Contact page: send the form without leaving the page ---------- */
+function initContactForm() {
+  const form = document.querySelector("[data-contact-form]");
+  if (!form) return;
+  const status = form.querySelector("[data-form-status]");
+  const button = form.querySelector('button[type="submit"]');
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      status.textContent = "Please fill in your name, a valid email and a message.";
+      status.dataset.state = "error";
+      form.reportValidity();
+      return;
+    }
+    button.disabled = true;
+    button.textContent = "Sending…";
+    status.textContent = "";
+    try {
+      const res = await fetch(form.dataset.endpoint, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) === "false") throw new Error(data.message || res.statusText);
+      form.reset();
+      status.textContent = "Thanks! Your message is on its way.";
+      status.dataset.state = "ok";
+    } catch {
+      status.innerHTML = `Sorry, that didn't send. You can email me directly at <a href="mailto:${SITE.email}">${SITE.email}</a>.`;
+      status.dataset.state = "error";
+    } finally {
+      button.disabled = false;
+      button.textContent = "Send message";
+    }
+  });
+}
+
 /* ---------- Projects page: tag filter ---------- */
 function initProjectFilter() {
   const bar = document.querySelector("[data-filter-bar]");
@@ -212,8 +252,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderFooter();
   initBanner();
   initRolodex();
+  initContactForm();
   initProjectFilter();
   initPromptAnatomy();
   initCopyButtons();
-  document.querySelectorAll("[data-print]").forEach((b) => b.addEventListener("click", () => print()));
 });

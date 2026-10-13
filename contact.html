@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Say hello · Ryan W Taylor</title>
+  <meta name="description" content="Get in touch with Ryan W Taylor.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <section class="contact-layout">
+      <div>
+        <p class="eyebrow">Say hello</p>
+        <h1>Let's talk.</h1>
+        <p class="lead">Teaching, business, fishing spots, or AI. Send me a note and I'll get back to you.</p>
+        <ul class="contact-links">
+          <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/rwt12" target="_blank" rel="noopener">linkedin.com/in/rwt12</a></li>
+          <li><span>Resume</span><a href="resume.html">View or download</a></li>
+        </ul>
+      </div>
+
+      <!--
+        Messages are delivered by FormSubmit (formsubmit.co) to the address in data-endpoint.
+        The very first submission sends an activation email to that inbox; click "Activate" once
+        and every message after that arrives normally.
+      -->
+      <form class="card contact-form" data-contact-form data-endpoint="https://formsubmit.co/ajax/wryan.taylor12@gmail.com" novalidate>
+        <label>Name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>Message
+          <textarea name="message" rows="6" required></textarea>
+        </label>
+        <!-- Spam trap: real people never see or fill this in. -->
+        <input type="text" name="_honey" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="New message from your website">
+        <input type="hidden" name="_template" value="table">
+        <button class="btn" type="submit">Send message</button>
+        <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+</body>
+</html>

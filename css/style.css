@@ -224,6 +224,31 @@ details + details { margin-top: 12px; }
 summary { cursor: pointer; font-weight: 600; }
 details[open] summary { margin-bottom: 8px; }
 
+/* ---------- Resume extras ---------- */
+.summary-list { margin: 0; padding-left: 20px; font-size: 1.05rem; }
+.summary-list li + li { margin-top: 6px; }
+.timeline-item .where { margin: 2px 0 0; color: var(--muted); font-size: 0.92rem; }
+
+/* ---------- Contact ---------- */
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.contact-links { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 12px; }
+.contact-links li { display: flex; gap: 16px; }
+.contact-links span { min-width: 80px; color: var(--muted); }
+.contact-form { display: grid; gap: 18px; }
+.contact-form label { display: grid; gap: 6px; font-weight: 600; font-size: 0.92rem; }
+.contact-form input, .contact-form textarea { font: inherit; font-weight: 400; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.contact-form textarea { resize: vertical; min-height: 140px; }
+.contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+.contact-form .btn { justify-self: start; }
+.contact-form .btn:disabled { opacity: 0.6; cursor: wait; }
+.form-status { margin: 0; min-height: 1.5em; font-size: 0.95rem; }
+.form-status[data-state="ok"] { color: #1f8a4c; }
+.form-status[data-state="error"] { color: #c2410c; }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 760px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 32px; }
+}
+
 /* ---------- Print (makes the resume page print cleanly to PDF) ---------- */
 @media print {
   #site-header, #site-footer, .no-print { display: none !important; }
