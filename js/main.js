@@ -3,12 +3,12 @@
    The header and footer on every page are built from these values.
    ========================================================================== */
 const SITE = {
-  name: "Your Name",
-  initials: "YN",
-  email: "you@example.com",
+  name: "Ryan W Taylor",
+  initials: "RWT",
+  email: "wryan.taylor12@gmail.com",
   links: [
     { label: "GitHub", url: "https://github.com/rwtaylor12" },
-    { label: "LinkedIn", url: "https://www.linkedin.com/in/your-handle" },
+    // { label: "LinkedIn", url: "https://www.linkedin.com/in/your-handle" },
   ],
   pages: [
     { label: "About", href: "index.html" },

@@ -2,45 +2,45 @@
    Design tokens — change the accent colour here to re-skin the whole site.
    ========================================================================== */
 :root {
-  --accent: #3b5bdb;
-  --accent-soft: #e7ecff;
-  --bg: #fbfaf8;
+  --accent: #2563c9;
+  --accent-soft: #e6eefb;
+  --bg: #f5f7fa;
   --surface: #ffffff;
-  --text: #1c1d21;
-  --muted: #5f6370;
-  --border: #e4e2dd;
-  --code-bg: #f3f1ed;
+  --text: #121821;
+  --muted: #5a6575;
+  --border: #dfe4eb;
+  --code-bg: #edf1f6;
   --radius: 14px;
-  --shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 16px rgb(0 0 0 / 0.04);
+  --shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 6px 20px rgb(15 23 42 / 0.05);
   --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Fraunces", Georgia, serif;
+  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --accent: #8ea4ff;
-    --accent-soft: #1f2645;
-    --bg: #111215;
-    --surface: #1a1b1f;
-    --text: #ececef;
-    --muted: #a0a3ad;
-    --border: #2c2e34;
-    --code-bg: #22242a;
+    --accent: #6ea2ff;
+    --accent-soft: #17243b;
+    --bg: #0d1117;
+    --surface: #151b23;
+    --text: #e6ebf2;
+    --muted: #93a0b2;
+    --border: #252e3a;
+    --code-bg: #1c2430;
     --shadow: none;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --accent: #8ea4ff;
-  --accent-soft: #1f2645;
-  --bg: #111215;
-  --surface: #1a1b1f;
-  --text: #ececef;
-  --muted: #a0a3ad;
-  --border: #2c2e34;
-  --code-bg: #22242a;
+  --accent: #6ea2ff;
+  --accent-soft: #17243b;
+  --bg: #0d1117;
+  --surface: #151b23;
+  --text: #e6ebf2;
+  --muted: #93a0b2;
+  --border: #252e3a;
+  --code-bg: #1c2430;
   --shadow: none;
   color-scheme: dark;
 }
@@ -60,8 +60,8 @@ body {
 img { max-width: 100%; display: block; }
 a { color: var(--accent); text-underline-offset: 3px; }
 h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
-h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.2rem, 6vw, 3.6rem); letter-spacing: -0.02em; }
-h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.5rem, 3.5vw, 2rem); }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.2rem, 6vw, 3.6rem); letter-spacing: -0.035em; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3.5vw, 2rem); letter-spacing: -0.025em; }
 h3 { font-size: 1.1rem; }
 p { margin: 0 0 1em; }
 pre { white-space: pre-wrap; overflow-wrap: anywhere; }
@@ -79,7 +79,7 @@ section + section { margin-top: 72px; }
 #site-header { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 600; }
-.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--accent); color: var(--bg); font-size: 0.8rem; letter-spacing: 0.04em; }
+.brand-mark { display: grid; place-items: center; min-width: 34px; padding: 0 8px; height: 34px; border-radius: 10px; background: var(--accent); color: var(--bg); font-size: 0.8rem; letter-spacing: 0.04em; }
 .site-nav { display: flex; align-items: center; gap: 4px; }
 .site-nav a { color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 8px; font-size: 0.95rem; }
 .site-nav a:hover { color: var(--text); background: var(--accent-soft); }
@@ -112,6 +112,7 @@ section + section { margin-top: 72px; }
 
 /* ---------- Cards & grids ---------- */
 .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.grid-sm { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
 .card h3 { margin-top: 0.4em; }
 .card p:last-child { margin-bottom: 0; }
@@ -123,12 +124,23 @@ section + section { margin-top: 72px; }
 
 /* ---------- Hero ---------- */
 .hero { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; padding-top: 24px; }
-.avatar { width: 220px; aspect-ratio: 1; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-soft)); display: grid; place-items: center; font-family: var(--font-display); font-size: 4rem; color: var(--bg); overflow: hidden; }
+.avatar { width: 220px; aspect-ratio: 1; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #64748b); display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; letter-spacing: -0.03em; font-size: 3.4rem; color: var(--bg); overflow: hidden; }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
 @media (max-width: 760px) {
   .hero { grid-template-columns: 1fr; }
-  .avatar { width: 140px; font-size: 2.6rem; order: -1; }
+  .avatar { width: 140px; font-size: 2.2rem; order: -1; }
 }
+
+/* ---------- About: roles & path ---------- */
+.role-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: 1.15rem; }
+.role-list li { padding-left: 22px; position: relative; }
+.role-list li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 10px; height: 2px; background: var(--accent); }
+.path-title { margin-top: 40px; color: var(--muted); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.path { list-style: none; padding: 0; margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; counter-reset: step; }
+.path li { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 10px; padding: 14px 16px; font-weight: 600; }
+.path li:last-child { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.path .when { display: block; font-size: 0.8rem; font-weight: 500; color: var(--muted); margin-bottom: 2px; }
+.path li:last-child .when { color: inherit; opacity: 0.8; }
 
 .fact-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
 .fact-list li { display: flex; gap: 12px; }
