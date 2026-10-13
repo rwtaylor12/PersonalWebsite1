@@ -21,7 +21,8 @@ window.DINO_CONTENT = {
     { q: "I'm tall when I'm young and short when I'm old. What am I?", a: "A candle." },
   ],
 
-  // { title: "song or album", artist: "who", url: "link to YouTube, Spotify, etc." }
+  // { title: "song", artist: "who", url: "https://www.youtube.com/watch?v=..." }
+  // Use the exact video link (Share → Copy link on YouTube). youtu.be/... links work too.
   songs: [
     { title: "The Road Goes On Forever", artist: "Robert Earl Keen", url: "https://www.youtube.com/results?search_query=Robert+Earl+Keen+The+Road+Goes+On+Forever" },
     { title: "Wondering Why", artist: "The Red Clay Strays", url: "https://www.youtube.com/results?search_query=Red+Clay+Strays+Wondering+Why" },
@@ -29,7 +30,7 @@ window.DINO_CONTENT = {
     { title: "Passage du Desir", artist: "Johnny Blue Skies", url: "https://www.youtube.com/results?search_query=Johnny+Blue+Skies+Passage+du+Desir" },
   ],
 
-  // { title: "what it is", url: "link to the video" }
+  // { title: "what it is", url: "https://www.youtube.com/watch?v=..." }
   videos: [
     { title: "Blaze and the Monster Machines theme song (Owen-approved)", url: "https://www.youtube.com/results?search_query=Blaze+and+the+Monster+Machines+theme+song" },
   ],

@@ -22,8 +22,17 @@
     videos: "Want a video to watch?",
     photos: "Want to see a photo?",
   };
+  const NOUN = { quotes: "quote", riddles: "riddle", songs: "song", videos: "video", photos: "photo" };
+  const INSTEAD = {
+    quotes: "Okay, how about a quote instead?",
+    riddles: "How about a riddle? They're tricky.",
+    songs: "How about a song suggestion?",
+    videos: "How about a video?",
+    photos: "Want to see a photo instead?",
+  };
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const pick = (list) => list[Math.floor(Math.random() * list.length)];
+  const shuffle = (list) => list.map((v) => [Math.random(), v]).sort((a, b) => a[0] - b[0]).map((p) => p[1]);
 
   /* ---------- Remember what happened this visit ---------- */
   const STORE = "owen-reid";
@@ -61,31 +70,30 @@
 
   /* ---------- Show / hide ---------- */
   let root = null;
+  let chat = null; // { offers: categories in the order they'll be offered, index, introduced }
 
   function appear(forced) {
     if (root) return;
     const cats = categories();
     if (!cats.length) return;
 
-    const speaker = Math.random() < 0.5 ? "owen" : "reid";
-    const name = speaker === "owen" ? "Owen" : "Reid";
-    const category = pick(cats);
+    chat = { offers: shuffle(cats), index: 0, introduced: new Set() };
 
     root = document.createElement("div");
-    root.className = `dinos speaker-${speaker}`;
+    root.className = "dinos";
     root.setAttribute("role", "dialog");
     root.setAttribute("aria-label", "Owen and Reid, the website dinosaurs");
     root.innerHTML = `
       <div class="dino-bubble">
         <button class="dino-close" type="button" aria-label="Send the dinosaurs away">×</button>
-        <p class="dino-name">${name}</p>
+        <p class="dino-name"></p>
         <div class="dino-say" aria-live="polite"></div>
         <div class="dino-actions"></div>
       </div>
       <div class="dino-pair">${dinoSvg("owen")}${dinoSvg("reid")}</div>`;
 
     // Somewhere random along the bottom of the screen.
-    const width = Math.min(320, window.innerWidth - 24);
+    const width = Math.min(344, window.innerWidth - 24);
     const left = 12 + Math.random() * Math.max(0, window.innerWidth - width - 24);
     root.style.left = `${Math.round(left)}px`;
     root.style.width = `${width}px`;
@@ -94,7 +102,7 @@
     root.querySelector(".dino-close").addEventListener("click", leave);
     root.addEventListener("keydown", (e) => { if (e.key === "Escape") leave(); });
 
-    ask(name, category);
+    ask(Math.random() < 0.5 ? "owen" : "reid");
     requestAnimationFrame(() => root.classList.add("is-in"));
     if (!forced) remember({ shown: (memory.shown || 0) + 1 });
   }
@@ -123,22 +131,44 @@
   }
   const el = (tag, text, cls) => { const n = document.createElement(tag); if (text) n.textContent = text; if (cls) n.className = cls; return n; };
 
-  function ask(name, category) {
-    const hello = name === "Owen" ? "Rawr! I'm Owen." : "Hi! I'm Reid.";
-    say(el("p", `${hello} ${ASK[category]}`));
-    buttons([
-      ["Yes!", () => give(category)],
-      ["No thanks", () => {
-        remember({ nos: (memory.nos || 0) + 1 });
-        say(el("p", "No problem. Rawr! See you around."));
-        buttons([]);
-        setTimeout(leave, 1600);
-      }, true],
-    ]);
+  // One dino offers the current category. "Something else" hands over to the other dino.
+  function ask(speaker) {
+    const category = chat.offers[chat.index];
+    const name = speaker === "owen" ? "Owen" : "Reid";
+    root.classList.remove("speaker-owen", "speaker-reid");
+    root.classList.add(`speaker-${speaker}`);
+    root.querySelector(".dino-name").textContent = name;
+
+    let line;
+    if (!chat.introduced.size) line = `${speaker === "owen" ? "Rawr! I'm Owen." : "Hi! I'm Reid."} ${ASK[category]}`;
+    else if (!chat.introduced.has(speaker)) line = `My turn! I'm ${name}. ${INSTEAD[category]}`;
+    else line = INSTEAD[category];
+    chat.introduced.add(speaker);
+    say(el("p", line));
+
+    const other = speaker === "owen" ? "reid" : "owen";
+    const choices = [["Yes!", () => give(category, speaker)]];
+    if (chat.offers.length > 1) {
+      choices.push(["Something else", () => {
+        chat.index = (chat.index + 1) % chat.offers.length;
+        ask(other);
+      }, true]);
+    }
+    choices.push(["No thanks", () => {
+      remember({ nos: (memory.nos || 0) + 1 });
+      say(el("p", "No problem. Rawr! See you around."));
+      buttons([]);
+      setTimeout(leave, 1600);
+    }, true]);
+    buttons(choices);
   }
 
-  function give(category) {
-    const item = pick(window.DINO_CONTENT[category]);
+  function give(category, speaker) {
+    // Never repeat the item shown just before in this category.
+    const list = window.DINO_CONTENT[category];
+    const fresh = list.filter((x) => x !== chat.last?.[category]);
+    const item = pick(fresh.length ? fresh : list);
+    chat.last = { ...chat.last, [category]: item };
     const parts = [];
     if (category === "quotes") {
       parts.push(el("blockquote", `“${item.text}”`, "dino-quote"));
@@ -163,10 +193,16 @@
       if (item.caption) parts.push(el("p", item.caption, "dino-meta"));
     }
     say(parts);
-    buttons([
-      ["Another one", () => give(pick(categories()))],
-      ["Bye!", leave, true],
-    ]);
+    const choices = [];
+    if (window.DINO_CONTENT[category].length > 1) choices.push([`Another ${NOUN[category]}`, () => give(category, speaker)]);
+    if (chat.offers.length > 1) {
+      choices.push(["Something else", () => {
+        chat.index = (chat.index + 1) % chat.offers.length;
+        ask(speaker === "owen" ? "reid" : "owen");
+      }, !!choices.length]);
+    }
+    choices.push(["Bye!", leave, true]);
+    buttons(choices);
   }
 
   /* ---------- When to show up ---------- */
