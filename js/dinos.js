@@ -164,7 +164,7 @@
   function give(category, speaker) {
     // Never repeat the item shown just before in this category.
     const list = window.DINO_CONTENT[category];
-    const fresh = list.filter((x) => x !== chat.last?.[category]);
+    const fresh = list.filter((x) => x !== chat.last?.[category] && x !== chat.last?.photos2);
     const item = pick(fresh.length ? fresh : list);
     chat.last = { ...chat.last, [category]: item };
     const parts = [];
@@ -185,14 +185,25 @@
       a.href = item.url; a.target = "_blank"; a.rel = "noopener";
       parts.push(a);
     } else if (category === "photos") {
-      const img = el("img", "", "dino-photo");
-      img.src = item.src; img.alt = item.caption || "A photo from Ryan";
-      parts.push(img);
-      if (item.caption) parts.push(el("p", item.caption, "dino-meta"));
+      // Two different photos at random, shown as a pair of tilted prints.
+      const second = pick(list.filter((x) => x !== item)) || item;
+      chat.last.photos2 = second;
+      parts.push(el("p", "Here's two!", "dino-riddle"));
+      const pair = el("div", "", "dino-photos");
+      for (const photo of [item, second]) {
+        const frame = el("a", "", "dino-print");
+        frame.href = photo.src; frame.target = "_blank"; frame.rel = "noopener";
+        const img = el("img", "", "dino-photo");
+        img.src = photo.src; img.alt = photo.caption || "A photo from Ryan";
+        frame.append(img);
+        if (photo.caption) frame.append(el("span", photo.caption, "dino-caption"));
+        pair.append(frame);
+      }
+      parts.push(pair);
     }
     say(parts);
     const choices = [];
-    if (window.DINO_CONTENT[category].length > 1) choices.push([`Another ${NOUN[category]}`, () => give(category, speaker)]);
+    if (window.DINO_CONTENT[category].length > 1) choices.push([category === "photos" ? "Two more" : `Another ${NOUN[category]}`, () => give(category, speaker)]);
     if (chat.offers.length > 1) {
       choices.push(["Something else", () => {
         chat.index = (chat.index + 1) % chat.offers.length;

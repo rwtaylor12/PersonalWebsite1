@@ -33,11 +33,17 @@ window.DINO_CONTENT = {
     { title: "BOP (Clean)", artist: "DaBaby", url: "https://www.youtube.com/watch?v=jgb2NG_6HTQ" },
   ],
 
-  // { src: "path to the image", caption: "a short caption" }
+  // { src: "path to the image" } (add caption: "..." if you want one under the photo)
+  // When a visitor says yes, the dinos show two of these at random.
   photos: [
-    { src: "assets/banner/bass.jpg", caption: "A good day on the water." },
-    { src: "assets/banner/little-slugger.jpg", caption: "Future little leaguer." },
-    { src: "assets/banner/beach.jpg", caption: "Beach day liftoff." },
-    { src: "assets/banner/wakesurf.jpg", caption: "Lake life." },
+    { src: "assets/dinos/reds-brawl.jpg" },
+    { src: "assets/dinos/spurs-big-three.jpg" },
+    { src: "assets/dinos/wedding-dance.jpg" },
+    { src: "assets/dinos/island-hoops.jpg" },
+    { src: "assets/dinos/newborn.jpg" },
+    { src: "assets/dinos/hogs-baseball.jpg" },
+    { src: "assets/dinos/hogs-office.jpg" },
+    { src: "assets/dinos/hog-fountain.jpg" },
+    { src: "assets/dinos/silly-face.jpg" },
   ],
 };

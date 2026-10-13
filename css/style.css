@@ -282,7 +282,12 @@ details[open] summary { margin-bottom: 8px; }
 .dino-answer { margin-top: 6px !important; font-weight: 700; color: var(--accent); }
 .dino-meta { margin-top: 4px !important; color: var(--muted); font-size: 0.88rem; }
 .dino-media { display: inline-block; margin-top: 2px; font-weight: 600; }
-.dino-photo { display: block; width: 100%; height: 170px; object-fit: cover; border-radius: 10px; }
+.dino-photos { display: flex; justify-content: center; padding: 10px 4px 4px; }
+.dino-print { display: block; width: 50%; max-width: 150px; padding: 6px 6px 18px; background: #fff; border-radius: 3px; box-shadow: 0 6px 16px rgb(15 23 42 / 0.22); transform: rotate(-4deg); transition: transform 0.2s; }
+.dino-print + .dino-print { margin-left: -14px; transform: rotate(5deg) translateY(6px); }
+.dino-print:hover { transform: rotate(0) scale(1.04); z-index: 1; position: relative; }
+.dino-photo { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 1px; }
+.dino-caption { display: block; margin-top: 4px; color: #333; font-size: 0.72rem; text-align: center; }
 .dino-link { margin-top: 6px; padding: 0; border: 0; background: none; color: var(--accent); font: inherit; font-weight: 600; text-decoration: underline; cursor: pointer; }
 .dino-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .dino-actions:empty { display: none; }
