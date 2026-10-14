@@ -1,12 +1,13 @@
 # Personal Website
 
-A simple, framework-free personal site with four pages:
+A simple, framework-free personal site:
 
 | Page | File | What it's for |
 | --- | --- | --- |
 | About | `index.html` | Intro, personality, quick facts |
 | Projects | `projects.html` | Featured 5×5 tracker demo plus project cards with tag filters |
 | 5×5 Tracker | `projects/5x5-tracker.html` | Workout tracker app, pre-loaded with sample data (`sampleEntries()`) |
+| Accounting Cycle Practice | `projects/accounting-cycle.html` | Accounting I Ch. 4 comprehensive problem: self-checking, with random problem codes and an answer key |
 | Resume | `resume.html` | Resume with one-click PDF view and download |
 | Say hello | `contact.html` | Contact form that emails Ryan |
 | AI Lab | `ai.html` | Prompt anatomy demo, prompt library, build log |

@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accounting Cycle Practice · Ryan W Taylor</title>
+<meta name="description" content="Principles of Accounting I, Chapter 4 comprehensive problem: an interactive, self-checking accounting cycle worksheet built by Ryan W Taylor.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script>
+/* Follow the light/dark choice made with the toggle on the main site. */
+try{const t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}
+</script>
+<style>
+/* Layout: one column of ruled worksheet "sheets", money in mono. A sticky score bar tracks progress. Colors match the rest of Ryan's site. */
+:root{
+  --paper:#f5f7fa; --sheet:#ffffff; --ink:#121821; --muted:#5a6575;
+  --rule:#dfe4eb; --rule-strong:#b6c0cd; --accent:#2563c9; --accent-soft:#e6eefb;
+  --ok:#1f8a4c; --ok-soft:#dff3e7; --bad:#c0392b; --bad-soft:#fbe4e1; --field:#ffffff; --focus:#2563c9; --bar:#ffffff;
+  --display:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0d1117; --sheet:#151b23; --ink:#e6ebf2; --muted:#93a0b2;
+  --rule:#252e3a; --rule-strong:#3c4858; --accent:#6ea2ff; --accent-soft:#17243b;
+  --ok:#5cc28a; --ok-soft:#15301f; --bad:#f08a7e; --bad-soft:#3a1f1c; --field:#1c2430; --focus:#6ea2ff; --bar:#151b23; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0d1117; --sheet:#151b23; --ink:#e6ebf2; --muted:#93a0b2;
+  --rule:#252e3a; --rule-strong:#3c4858; --accent:#6ea2ff; --accent-soft:#17243b;
+  --ok:#5cc28a; --ok-soft:#15301f; --bad:#f08a7e; --bad-soft:#3a1f1c; --field:#1c2430; --focus:#6ea2ff; --bar:#151b23; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;margin:0}
+.wrap{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:24px 72px;display:grid;gap:20px}
+header.top{display:grid;gap:10px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--display);font-weight:800;letter-spacing:-.03em;font-size:clamp(26px,4.5vw,38px);line-height:1.1;margin:0;text-wrap:balance}
+.lede{margin:0;color:var(--muted);max-width:68ch}
+button{font:inherit;font-size:13px;font-weight:600;border-radius:8px;padding:7px 12px;cursor:pointer;border:1px solid var(--rule-strong);background:var(--sheet);color:var(--ink)}
+button:hover{border-color:var(--accent);color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--sheet)}
+button.primary:hover{color:var(--sheet);filter:brightness(1.08)}
+button.danger{color:var(--bad);border-color:var(--bad)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+
+/* Score bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bar);border:1px solid var(--rule);border-radius:12px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.score{display:flex;align-items:center;gap:10px;min-width:220px;flex:1}
+.score b{font-family:var(--mono);font-size:15px;font-weight:500;white-space:nowrap}
+.meter{flex:1;height:8px;border-radius:99px;background:var(--rule);overflow:hidden;min-width:80px}
+.meter i{display:block;height:100%;width:0;background:var(--ok);transition:width .25s}
+.bar label.tog{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer}
+.code{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.code strong{color:var(--ink);font-weight:500}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tools input{width:96px;font-family:var(--mono);font-size:13px;padding:6px 8px;border:1px solid var(--rule-strong);border-radius:6px;background:var(--field);color:var(--ink)}
+.msg{font-size:13px;color:var(--muted)}
+
+section.sheet{background:var(--sheet);border:1px solid var(--rule);border-radius:14px;box-shadow:0 1px 2px rgb(15 23 42 / .04),0 4px 16px rgb(15 23 42 / .04);padding:18px 18px 20px;display:grid;gap:12px;min-width:0}
+.sheet-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;align-items:baseline;border-bottom:2px solid var(--accent);padding-bottom:8px}
+h2{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.step{font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;gap:10px;align-items:baseline}
+.sec-score{font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:99px;border:1px solid var(--rule-strong);color:var(--muted);white-space:nowrap}
+.sec-score.done{color:var(--ok);border-color:var(--ok)}
+.hint{margin:0;font-size:13.5px;color:var(--muted);max-width:72ch}
+h3{font-family:var(--display);font-size:15px;font-weight:700;margin:6px 0 0}
+p.biz{margin:0;max-width:72ch}
+
+.scroll{overflow-x:auto;min-width:0}
+table.pad{border-collapse:collapse;width:100%;min-width:520px;font-variant-numeric:tabular-nums}
+table.pad th{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding:6px 6px;border-bottom:1.5px solid var(--rule-strong)}
+table.pad th.num{text-align:right}
+table.pad td{border-bottom:1px solid var(--rule);padding:0;height:34px;position:relative}
+table.pad td+td{border-left:1px solid var(--rule)}
+table.pad td.money{border-left:1px solid var(--rule-strong);width:130px}
+table.pad td.date{width:70px;font-family:var(--mono);font-size:13px;padding:0 8px;color:var(--muted);white-space:nowrap}
+table.pad td.lbl{padding:0 10px;font-size:14.5px}
+table.pad td.lbl.in1{padding-left:28px} table.pad td.lbl.in2{padding-left:46px}
+table.pad td.lbl.strong{font-weight:600}
+table.pad tr.first td{border-top:1.5px solid var(--rule-strong)}
+table.pad input,table.pad select{width:100%;height:33px;border:0;background:transparent;color:var(--ink);font:inherit;font-size:14.5px;padding:0 8px}
+table.pad select{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 14px) 15px,calc(100% - 9px) 15px;background-size:5px 5px;background-repeat:no-repeat;padding-right:24px}
+table.pad select option{background:var(--sheet);color:var(--ink)}
+table.pad input:focus,table.pad select:focus{background-color:var(--accent-soft);outline:none;box-shadow:inset 0 -2px 0 var(--focus)}
+table.pad td.money input{font-family:var(--mono);font-size:14px;text-align:right;padding-right:22px}
+tfoot td{height:auto!important;padding:8px 22px 8px 8px!important;font-family:var(--mono);font-size:14px;text-align:right;border-bottom:3px double var(--rule-strong)!important;font-weight:500}
+tfoot td.flbl{text-align:left;font-family:var(--body);font-weight:600;font-size:13px;padding-left:10px!important}
+
+/* Grading marks: color plus a glyph, so state never relies on color alone */
+body.fb td.ok{background:var(--ok-soft)}
+body.fb td.bad{background:var(--bad-soft)}
+body.fb td.ok::after,body.fb td.bad::after{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:700;pointer-events:none}
+body.fb td.ok::after{content:"✓";color:var(--ok)}
+body.fb td.bad::after{content:"✗";color:var(--bad)}
+body.fb td.ok select,body.fb td.bad select{background-position:calc(100% - 28px) 15px,calc(100% - 23px) 15px;padding-right:36px}
+.note{font-size:13px;color:var(--bad);margin:0}
+body:not(.fb) .note{display:none}
+
+.status{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--rule-strong);color:var(--muted);white-space:nowrap}
+.status.ok{color:var(--ok);border-color:var(--ok)}
+.status.bad{color:var(--bad);border-color:var(--bad);background:var(--bad-soft)}
+.foot-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center}
+
+/* Problem data */
+.coa{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px 18px;font-size:14px}
+.coa div{display:grid;gap:2px;align-content:start}
+.coa b{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+table.plain{border-collapse:collapse;width:100%;font-size:14px}
+table.plain th,table.plain td{text-align:left;vertical-align:top;padding:5px 8px;border-bottom:1px solid var(--rule)}
+table.plain th{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+table.plain td:first-child{white-space:nowrap;font-family:var(--mono);font-size:13px}
+table.plain td.r{text-align:right;font-family:var(--mono);font-size:13.5px;white-space:nowrap}
+ol.adj{margin:0;padding-left:22px;display:grid;gap:4px}
+
+/* T accounts */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px 16px}
+.taccount{display:grid;min-width:0}
+.t-title{display:flex;justify-content:space-between;align-items:baseline;font-weight:600;font-size:14px;padding:0 4px 4px;border-bottom:2px solid var(--ink);gap:8px}
+.t-title span:last-child{font-family:var(--mono);font-size:12px;color:var(--muted);font-weight:400}
+.t-body{display:grid;grid-template-columns:1fr 1fr}
+.t-side{display:grid}
+.t-side+.t-side{border-left:2px solid var(--ink)}
+.t-side input{width:100%;min-width:0;height:28px;border:0;border-bottom:1px solid var(--rule);background:transparent;color:var(--ink);font-family:var(--mono);font-size:13.5px;text-align:right;padding:0 6px}
+.t-side input.bal{border-top:1.5px solid var(--rule-strong);border-bottom:0;font-weight:500}
+.t-side input:focus{background:var(--accent-soft);outline:none}
+
+/* Ratios */
+.calc{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--mono);font-size:14px}
+.calc .name{font-family:var(--body);font-weight:600;min-width:150px}
+.calc .cell{position:relative;border-bottom:1.5px solid var(--rule-strong);background:var(--field)}
+.calc input{width:120px;height:34px;border:0;background:transparent;color:var(--ink);font:inherit;text-align:right;padding:0 22px 0 8px}
+body.fb .calc .cell.ok{background:var(--ok-soft)} body.fb .calc .cell.bad{background:var(--bad-soft)}
+body.fb .calc .cell.ok::after,body.fb .calc .cell.bad::after{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:700}
+body.fb .calc .cell.ok::after{content:"✓";color:var(--ok)} body.fb .calc .cell.bad::after{content:"✗";color:var(--bad)}
+textarea{width:100%;min-height:90px;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--rule-strong);border-radius:4px;padding:10px;resize:vertical}
+
+.confirm{display:inline-flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px}
+.key h3{margin-top:10px}
+.key table.plain td.r{width:110px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.back-link{display:inline-block;font-size:14px;font-weight:500;color:var(--muted);text-decoration:none}
+.back-link:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back-link" href="../projects.html">← Ryan W Taylor · Projects</a>
+    <div class="eyebrow">Principles of Accounting I · Chapter 4 · Comprehensive problem</div>
+    <h1 id="title">Accounting Cycle Practice</h1>
+    <p class="lede">Work one month of a new service business from the first journal entry to the post-closing trial balance. Each cell is checked when you leave it: green with ✓ is correct, red with ✗ needs another look. Generate a new problem any time for fresh numbers and a new business.</p>
+  </header>
+
+  <div class="bar" role="region" aria-label="Score and problem controls">
+    <div class="score"><b id="score-txt">0 / 0 correct</b><div class="meter" aria-hidden="true"><i id="score-fill"></i></div></div>
+    <label class="tog" for="fb-toggle"><input type="checkbox" id="fb-toggle" checked> Check as I go</label>
+    <span class="code">Problem code <strong id="code-txt">HAYES</strong></span>
+    <div class="tools">
+      <button type="button" class="primary" id="new-btn">New problem</button>
+      <input id="code-in" aria-label="Problem code to load" placeholder="Code" autocomplete="off">
+      <button type="button" id="load-btn">Load code</button>
+      <button type="button" id="hayes-btn">Class version</button>
+    </div>
+    <span class="msg" id="msg"></span>
+  </div>
+
+  <div id="app" style="display:grid;gap:20px"></div>
+</div>
+
+<script>
+(function(){
+'use strict';
+/* ---------- utilities ---------- */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function el(tag,attrs,kids){const e=document.createElement(tag);for(const k in (attrs||{})){const v=attrs[k];if(v==null||v===false)continue;if(k==='class')e.className=v;else if(k==='text')e.textContent=v;else e.setAttribute(k,v===true?'':v);}(kids||[]).forEach(c=>{if(c!=null)e.appendChild(typeof c==='string'?document.createTextNode(c):c);});return e;}
+const fmt=n=>Math.round(n).toLocaleString('en-US');
+const $=n=>'$'+fmt(n);
+function num(v){v=String(v==null?'':v).trim();if(!v)return NaN;const n=parseFloat(v.replace(/[$,\s()]/g,''));return isNaN(n)?NaN:Math.abs(n);}
+const eq=(a,b)=>!isNaN(a)&&Math.round(a*100)===Math.round(b*100);
+
+/* ---------- business scenarios ---------- */
+const BIZ=[
+ {k:'detail',co:L=>L+' Mobile Detailing',does:'details cars, trucks, and fleet vehicles on-site at customers’ homes and businesses',space:'a rented shop bay',spaceShort:'the shop bay',contrib:'detailing equipment',buy:'a trailer-mounted pressure washer and water tank',sup:'detailing supplies (soaps, waxes, microfiber towels)',adv:'Camden Auto Group',verb:'detail',unit:'used vehicle',units:'used vehicles',billed:'a local car-rental agency',billedFor:'fleet detailing'},
+ {k:'lawn',co:L=>L+' Lawn & Landscape',does:'mows, trims, and cleans up yards for homes and businesses',space:'a rented equipment shed',spaceShort:'the equipment shed',contrib:'mowers and trimmers',buy:'a commercial zero-turn mower',sup:'fertilizer, seed, and trimmer line',adv:'Pine Ridge Apartments',verb:'complete',unit:'grounds-maintenance visit',units:'grounds-maintenance visits',billed:'a local church',billedFor:'fall cleanup'},
+ {k:'pet',co:L=>L+' Pet Grooming',does:'bathes, clips, and grooms dogs and cats by appointment',space:'a rented storefront suite',spaceShort:'the storefront suite',contrib:'grooming tables and dryers',buy:'a hydraulic grooming table and bathing station',sup:'grooming supplies (shampoos, clipper blades, towels)',adv:'Southern Paws Kennel',verb:'groom',unit:'boarded dog',units:'boarded dogs',billed:'a veterinary clinic',billedFor:'post-surgery grooming'},
+ {k:'clean',co:L=>L+' Cleaning Co.',does:'cleans homes, offices, and rental properties',space:'a rented storage unit',spaceShort:'the storage unit',contrib:'vacuums and cleaning equipment',buy:'a commercial carpet extractor',sup:'cleaning chemicals and paper goods',adv:'Riverbend Property Management',verb:'clean',unit:'move-out unit',units:'move-out units',billed:'a law office',billedFor:'nightly office cleaning'},
+ {k:'photo',co:L=>L+' Photography',does:'shoots portraits, events, and real-estate listings',space:'a rented studio space',spaceShort:'the studio',contrib:'cameras and lenses',buy:'studio lighting and backdrops',sup:'photo supplies (printing paper, frames, albums)',adv:'Lakeside High School',verb:'photograph',unit:'senior portrait session',units:'senior portrait sessions',billed:'a real-estate agency',billedFor:'listing photos'},
+ {k:'tech',co:L=>L+' Tech Repair',does:'repairs computers and phones and sets up small-office networks',space:'a rented shop space',spaceShort:'the shop',contrib:'diagnostic tools and computers',buy:'a repair bench and diagnostic equipment',sup:'repair supplies (cables, thermal paste, small parts)',adv:'the Union County school district',verb:'repair',unit:'student laptop',units:'student laptops',billed:'a dental office',billedFor:'network setup'}
+];
+const FIRST=['Jordan','Taylor','Casey','Morgan','Avery','Riley','Jamie','Drew','Logan','Parker','Reese','Sydney','Blake','Dana','Quinn','Kendall'];
+const LAST=['Hayes','Carter','Whitfield','Delgado','Brooks','Nguyen','Pruitt','Calloway','Fontaine','Mercer','Ashby','Holloway','Tatum','Okafor','Lindqvist','Barrett'];
+const MONTHS=[['January',0],['March',2],['May',4],['July',6],['August',7],['October',9],['December',11]];
+const MNAMES=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MABBR=['Jan.','Feb.','Mar.','Apr.','May','June','July','Aug.','Sept.','Oct.','Nov.','Dec.'];
+
+/* ---------- problem parameters ---------- */
+const HAYES={code:'HAYES',biz:'detail',first:'Jordan',last:'Hayes',month:9,invest:18000,contrib:9000,buy:14400,rent:950,sup:2150,advUnits:30,advPrice:120,billed:2850,cashFees:8215,wageDay:168,apPay:1200,draw:2000,supOnHand:820,unitsDone:11,depr:390,accrDays:3,ins:0,collect:0};
+
+function randomParams(seed){
+  const r=mulberry32(seed*2654435761>>>0);
+  const int=(lo,hi,step)=>{step=step||1;const n=Math.floor((hi-lo)/step)+1;return lo+step*Math.floor(r()*n);};
+  const pick=a=>a[Math.floor(r()*a.length)];
+  for(let tries=0;tries<200;tries++){
+    const p={code:String(seed),biz:pick(BIZ).k,first:pick(FIRST),last:pick(LAST),month:pick(MONTHS)[1]};
+    p.invest=int(14000,26000,500); p.contrib=int(5000,12000,500); p.buy=int(8000,17000,100);
+    p.rent=int(700,1400,25); p.sup=int(1200,3000,25);
+    p.advUnits=int(20,40); p.advPrice=int(80,200,5);
+    p.billed=int(1500,4000,25); p.cashFees=int(5000,11000,5);
+    p.wageDay=int(120,200,4); p.draw=int(1000,3000,250);
+    p.apPay=Math.min(p.sup-200,Math.round(p.sup*(0.4+0.3*r())/50)*50);
+    p.supOnHand=Math.round(p.sup*(0.25+0.25*r())/5)*5;
+    p.unitsDone=Math.max(3,Math.round(p.advUnits*(0.25+0.2*r())));
+    p.depr=int(250,500,10); p.accrDays=int(2,3);
+    p.ins=r()<0.5?int(100,250,5)*12:0;
+    p.collect=r()<0.5?Math.round(p.billed*(0.4+0.4*r())/25)*25:0;
+    const P=buildProblem(p);
+    if(P.unadj.cash>=1500 && P.is.ni>500) return p;
+  }
+  return Object.assign({},HAYES,{code:String(seed)});
+}
+
+/* ---------- build problem + full solution ---------- */
+function buildProblem(p){
+  const B=BIZ.find(b=>b.k===p.biz)||BIZ[0];
+  const owner=p.first+' '+p.last, co=B.co(p.last), M=MNAMES[p.month], Ma=MABBR[p.month];
+  const M2=MNAMES[(p.month+2)%12], last=31;
+  const A={
+    cash:{no:11,name:'Cash',t:'A'}, ar:{no:12,name:'Accounts Receivable',t:'A'}, sup:{no:14,name:'Supplies',t:'A'},
+    ppi:{no:15,name:'Prepaid Insurance',t:'A'}, eq:{no:18,name:'Equipment',t:'P'}, ad:{no:19,name:'Accumulated Depreciation—Equipment',t:'C'},
+    ap:{no:21,name:'Accounts Payable',t:'L'}, wp:{no:22,name:'Wages Payable',t:'L'}, uf:{no:23,name:'Unearned Fees',t:'L'},
+    cap:{no:31,name:owner+', Capital',t:'O'}, drw:{no:32,name:owner+', Drawing',t:'D'}, fe:{no:41,name:'Fees Earned',t:'R'},
+    we:{no:51,name:'Wages Expense',t:'E'}, re:{no:52,name:'Rent Expense',t:'E'}, se:{no:53,name:'Supplies Expense',t:'E'},
+    de:{no:54,name:'Depreciation Expense',t:'E'}, ie:{no:55,name:'Insurance Expense',t:'E'}
+  };
+  const keys=Object.keys(A).filter(k=>p.ins||(k!=='ppi'&&k!=='ie'));
+  keys.forEach(k=>{A[k].k=k;A[k].normal=('APDE'.includes(A[k].t))?'dr':'cr';});
+  const D=(a,v)=>({a,dr:v}), C=(a,v)=>({a,cr:v});
+  const adv=p.advUnits*p.advPrice, wages=p.wageDay*20;
+  const T=[];
+  T.push({d:1,text:`${owner} invested ${$(p.invest)} cash and ${B.contrib} valued at ${$(p.contrib)} in the business in exchange for capital.`,lines:[D('cash',p.invest),D('eq',p.contrib),C('cap',p.invest+p.contrib)]});
+  T.push({d:2,text:`Purchased ${B.buy} for ${$(p.buy)} cash.`,lines:[D('eq',p.buy),C('cash',p.buy)]});
+  if(p.ins) T.push({d:2,text:`Paid ${$(p.ins)} for a 12-month insurance policy beginning ${M} 1.`,lines:[D('ppi',p.ins),C('cash',p.ins)]});
+  T.push({d:3,text:`Paid rent on ${B.spaceShort} for ${M}, ${$(p.rent)}.`,lines:[D('re',p.rent),C('cash',p.rent)]});
+  T.push({d:5,text:`Purchased ${B.sup} on account, ${$(p.sup)}.`,lines:[D('sup',p.sup),C('ap',p.sup)]});
+  T.push({d:6,text:`Received ${$(adv)} from ${B.adv} as an advance payment to ${B.verb} ${p.advUnits} ${B.units} at ${$(p.advPrice)} each during ${M}–${M2}.`,lines:[D('cash',adv),C('uf',adv)]});
+  T.push({d:15,text:`Billed ${B.billed} ${$(p.billed)} for ${B.billedFor} performed on account.`,lines:[D('ar',p.billed),C('fe',p.billed)]});
+  T.push({d:20,text:`Received cash from customers for services performed during the month, ${$(p.cashFees)}.`,lines:[D('cash',p.cashFees),C('fe',p.cashFees)]});
+  if(p.collect) T.push({d:25,text:`Collected ${$(p.collect)} from ${B.billed} on account.`,lines:[D('cash',p.collect),C('ar',p.collect)]});
+  T.push({d:28,text:`Paid wages for ${M} 1–28, ${$(wages)}.`,lines:[D('we',wages),C('cash',wages)]});
+  T.push({d:last,text:`Paid ${$(p.apPay)} to the supplies vendor on account.`,lines:[D('ap',p.apPay),C('cash',p.apPay)]});
+  T.push({d:last,text:`${owner} withdrew ${$(p.draw)} cash for personal use.`,lines:[D('drw',p.draw),C('cash',p.draw)]});
+
+  const supUsed=p.sup-p.supOnHand, earned=p.unitsDone*p.advPrice, accr=p.accrDays*p.wageDay;
+  const ADJ=[];
+  ADJ.push({text:`A count shows ${$(p.supOnHand)} of supplies still on hand.`,lines:[D('se',supUsed),C('sup',supUsed)],calc:`${$(p.sup)} − ${$(p.supOnHand)} on hand`});
+  ADJ.push({text:`${p.unitsDone} of the ${p.advUnits} ${B.adv} ${B.units} were completed during ${M}.`,lines:[D('uf',earned),C('fe',earned)],calc:`${p.unitsDone} × ${$(p.advPrice)}`});
+  ADJ.push({text:`Depreciation on all equipment for ${M} is ${$(p.depr)}.`,lines:[D('de',p.depr),C('ad',p.depr)],calc:'Given'});
+  if(p.ins) ADJ.push({text:'One month of the insurance policy has expired.',lines:[D('ie',p.ins/12),C('ppi',p.ins/12)],calc:`${$(p.ins)} ÷ 12`});
+  ADJ.push({text:`Wages run ${$(p.wageDay)} per workday. Employees worked ${p.accrDays} days (${M} ${last-p.accrDays+1}–${last}) that will be paid next month.`,lines:[D('we',accr),C('wp',accr)],calc:`${p.accrDays} days × ${$(p.wageDay)}`});
+  ADJ.forEach((a,i)=>a.label='('+'abcdef'[i]+')');
+
+  const bal={}; keys.forEach(k=>bal[k]=0);
+  const post=ls=>ls.forEach(l=>{bal[l.a]+=(l.dr||0)-(l.cr||0);});
+  T.forEach(t=>post(t.lines)); const unadj=Object.assign({},bal);
+  ADJ.forEach(a=>post(a.lines)); const adj=Object.assign({},bal);
+  const tb=b=>keys.filter(k=>Math.round(b[k])!==0).map(k=>b[k]>0?{a:k,dr:b[k]}:{a:k,cr:-b[k]});
+
+  const rev=-adj.fe, expK=keys.filter(k=>A[k].t==='E'&&adj[k]!==0).sort((x,y)=>adj[y]-adj[x]);
+  const te=expK.reduce((s,k)=>s+adj[k],0), ni=rev-te;
+  const inv=p.invest+p.contrib, draw=p.draw, endCap=inv+ni-draw;
+  const caK=['cash','ar','sup'].concat(p.ins?['ppi']:[]).filter(k=>adj[k]!==0);
+  const tca=caK.reduce((s,k)=>s+adj[k],0), ppe=adj.eq+adj.ad, ta=tca+ppe;
+  const clK=['ap','wp','uf'].filter(k=>adj[k]!==0), tl=clK.reduce((s,k)=>s-adj[k],0);
+  const closing=[{e:1,lines:[D('fe',rev)].concat(expK.map(k=>C(k,adj[k]))).concat([C('cap',ni)])},{e:2,lines:[D('cap',draw),C('drw',draw)]}];
+  const pc=Object.assign({},adj); keys.forEach(k=>{if('RED'.includes(A[k].t))pc[k]=0;}); pc.cap=-endCap;
+  return {p,B,A,keys,owner,co,M,Ma,last,T,ADJ,unadj,adj,
+    tbUnadj:tb(unadj),tbAdj:tb(adj),tbPost:tb(pc),
+    is:{rev,expK,te,ni},soe:{beg:0,inv,ni,draw,inc:inv+ni-draw,end:endCap},
+    bs:{caK,tca,eq:adj.eq,ad:-adj.ad,ppe,ta,clK,tl,cap:endCap,tloe:tl+endCap},
+    closing,wc:tca-tl,cr:Math.round(tca/tl*100)/100};
+}
+
+/* ---------- state ---------- */
+let P=null, store={}, KEY='', graders=[];
+const fbToggle=document.getElementById('fb-toggle');
+function loadStore(){try{store=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){store={};}}
+let saveT; function save(){clearTimeout(saveT);saveT=setTimeout(()=>{try{localStorage.setItem(KEY,JSON.stringify(store));}catch(e){}},250);}
+try{const f=localStorage.getItem('cyc-fb');if(f==='0')fbToggle.checked=false;}catch(e){}
+function applyFb(){document.body.classList.toggle('fb',fbToggle.checked);try{localStorage.setItem('cyc-fb',fbToggle.checked?'1':'0');}catch(e){}}
+fbToggle.addEventListener('change',applyFb); applyFb();
+
+function field(id,attrs){const i=el('input',Object.assign({id,autocomplete:'off'},attrs||{}));if(store[id]!=null)i.value=store[id];i.addEventListener('input',()=>{store[id]=i.value;save();});i.addEventListener('change',()=>{const n=num(i.value);if(attrs&&attrs['data-money']!=null&&!isNaN(n)&&i.value.trim()){const neg=/\(/.test(i.value);i.value=neg?'('+fmt(n)+')':fmt(n);store[id]=i.value;save();}gradeAll();});return i;}
+function money(id,label){return field(id,{inputmode:'decimal','aria-label':label,'data-money':''});}
+function acctSelect(id,label,filter){
+  const s=el('select',{id,'aria-label':label},[el('option',{value:'',text:'— choose account —'})]);
+  P.keys.filter(filter||(()=>true)).forEach(k=>s.appendChild(el('option',{value:k,text:P.A[k].name})));
+  if(store[id]!=null)s.value=store[id];
+  s.addEventListener('change',()=>{store[id]=s.value;save();gradeAll();});
+  return s;
+}
+function mark(td,state){td.classList.remove('ok','bad');if(state===true)td.classList.add('ok');else if(state===false)td.classList.add('bad');}
+function secScore(chip,ok,total){chip.textContent=ok+' / '+total;chip.classList.toggle('done',ok===total&&total>0);}
+function sheet(id,title,step,kids){const chip=el('span',{class:'sec-score',text:''});const s=el('section',{class:'sheet',id},[el('div',{class:'sheet-head'},[el('h2',{text:title}),el('span',{class:'step'},[step,chip])])].concat(kids||[]));s.chip=chip;return s;}
+
+/* ---------- graders ---------- */
+function gradeEntry(rows,sol){
+  const used=sol.map(()=>false); let ok=0;
+  const st=rows.map(r=>({r,a:r.sel.value,d:num(r.dr.value),c:num(r.cr.value),dRaw:r.dr.value.trim(),cRaw:r.cr.value.trim(),m:-1}));
+  st.forEach(s=>{if(!s.a)return;const i=sol.findIndex((l,i)=>!used[i]&&l.a===s.a&&((l.dr&&eq(s.d,l.dr)&&!s.cRaw)||(l.cr&&eq(s.c,l.cr)&&!s.dRaw)));if(i>=0){used[i]=true;s.m=i;}});
+  st.forEach(s=>{if(s.m>=0||!s.a)return;const i=sol.findIndex((l,i)=>!used[i]&&l.a===s.a);if(i>=0){used[i]=true;s.m=i;}});
+  st.forEach(s=>{
+    const R=s.r; [R.tdA,R.tdD,R.tdC].forEach(t=>mark(t,null));
+    if(!s.a&&!s.dRaw&&!s.cRaw)return;
+    if(s.m<0){mark(R.tdA,false);if(s.dRaw)mark(R.tdD,false);if(s.cRaw)mark(R.tdC,false);return;}
+    const l=sol[s.m]; mark(R.tdA,true); ok++;
+    const want=l.dr?'d':'c', amt=l.dr||l.cr;
+    const wTd=want==='d'?R.tdD:R.tdC, oTd=want==='d'?R.tdC:R.tdD;
+    const wRaw=want==='d'?s.dRaw:s.cRaw, oRaw=want==='d'?s.cRaw:s.dRaw, wVal=want==='d'?s.d:s.c;
+    if(wRaw){const good=eq(wVal,amt);mark(wTd,good);if(good&&!oRaw)ok++;}
+    if(oRaw)mark(oTd,false);
+  });
+  return {ok,total:sol.length*2};
+}
+function gradeTB(rows,expected){
+  const used={}; let ok=0;
+  rows.forEach(r=>{
+    [r.tdA,r.tdD,r.tdC].forEach(t=>mark(t,null));
+    const a=r.sel.value,dRaw=r.dr.value.trim(),cRaw=r.cr.value.trim();
+    if(!a&&!dRaw&&!cRaw)return;
+    const e=expected.find(x=>x.a===a);
+    if(!e||used[a]){mark(r.tdA,false);if(dRaw)mark(r.tdD,false);if(cRaw)mark(r.tdC,false);return;}
+    used[a]=true; mark(r.tdA,true); ok++;
+    const wantD=!!e.dr, amt=e.dr||e.cr;
+    const wTd=wantD?r.tdD:r.tdC,oTd=wantD?r.tdC:r.tdD,wRaw=wantD?dRaw:cRaw,oRaw=wantD?cRaw:dRaw,wVal=num(wantD?r.dr.value:r.cr.value);
+    if(wRaw){const g=eq(wVal,amt);mark(wTd,g);if(g&&!oRaw)ok++;}
+    if(oRaw)mark(oTd,false);
+  });
+  return {ok,total:expected.length*2};
+}
+function gradeFixed(items){let ok=0;items.forEach(it=>{const raw=it.inp.value.trim();if(!raw){mark(it.td,null);return;}const g=it.check?it.check(num(raw)):eq(num(raw),it.val);mark(it.td,g);if(g)ok++;});return {ok,total:items.length};}
+
+/* ---------- renderers ---------- */
+function journalTable(prefix,blocks,dateFn){
+  const tb=el('tbody'), rowsAll=[];
+  blocks.forEach((b,bi)=>{
+    const rows=[];
+    b.lines.forEach((l,li)=>{
+      const id=prefix+bi+'-'+li;
+      const sel=acctSelect(id+'-a','Account, '+(dateFn(b,bi,0)||'')+' line '+(li+1)), dr=money(id+'-d','Debit'), cr=money(id+'-c','Credit');
+      const tdA=el('td',{},[sel]),tdD=el('td',{class:'money'},[dr]),tdC=el('td',{class:'money'},[cr]);
+      tb.appendChild(el('tr',{class:li===0&&bi>0?'first':null},[el('td',{class:'date',text:li===0?dateFn(b,bi):''}),tdA,tdD,tdC]));
+      rows.push({sel,dr,cr,tdA,tdD,tdC});
+    });
+    rowsAll.push({rows,sol:b.lines});
+  });
+  const fd=el('td',{text:'0'}),fc=el('td',{text:'0'});
+  const t=el('table',{class:'pad'},[el('thead',{},[el('tr',{},[el('th',{text:'Date'}),el('th',{text:'Account'}),el('th',{class:'num',text:'Debit'}),el('th',{class:'num',text:'Credit'})])]),tb,el('tfoot',{},[el('tr',{},[el('td',{class:'flbl',colspan:'2',text:'Column totals'}),fd,fc])])]);
+  return {table:el('div',{class:'scroll'},[t]),rowsAll,fd,fc};
+}
+function totalsStatus(rows,fd,fc,chipEl){let d=0,c=0;rows.forEach(r=>{const a=num(r.dr.value),b=num(r.cr.value);if(!isNaN(a))d+=a;if(!isNaN(b))c+=b;});fd.textContent=fmt(d);fc.textContent=fmt(c);if(!d&&!c){chipEl.className='status';chipEl.textContent='Enter amounts';}else if(Math.abs(d-c)<.005){chipEl.className='status ok';chipEl.textContent='✓ Debits equal credits';}else{chipEl.className='status bad';chipEl.textContent='Out of balance by '+fmt(Math.abs(d-c));}}
+function tbTable(prefix,n,heads){heads=heads||['Account','Debit balances','Credit balances'];
+  const tb=el('tbody'),rows=[];
+  for(let i=0;i<n;i++){const id=prefix+i;const sel=acctSelect(id+'-a','Account, line '+(i+1)),dr=money(id+'-d','Debit, line '+(i+1)),cr=money(id+'-c','Credit, line '+(i+1));const r={sel,dr,cr,tdA:el('td',{},[sel]),tdD:el('td',{class:'money'},[dr]),tdC:el('td',{class:'money'},[cr])};tb.appendChild(el('tr',{},[r.tdA,r.tdD,r.tdC]));rows.push(r);}
+  const fd=el('td',{text:'0'}),fc=el('td',{text:'0'});
+  const t=el('table',{class:'pad'},[el('thead',{},[el('tr',{},[el('th',{text:heads[0]}),el('th',{class:'num',text:heads[1]}),el('th',{class:'num',text:heads[2]})])]),tb,el('tfoot',{},[el('tr',{},[el('td',{class:'flbl',text:'Totals'}),fd,fc])])]);
+  return {table:el('div',{class:'scroll'},[t]),rows,fd,fc};
+}
+function stmtTable(lines){
+  // lines: {label, cls, id, val, check, sel:{id,filter,expected}}
+  const tb=el('tbody'),items=[],selRows=[];
+  lines.forEach(L=>{
+    if(L.sel){const s=acctSelect(L.sel.id+'-a',L.label,L.sel.filter),m=money(L.sel.id+'-m',L.label+' amount');const r={sel:s,m,tdA:el('td',{class:'lbl in1'},[s]),tdM:el('td',{class:'money'},[m])};r.tdA.style.padding='0';tb.appendChild(el('tr',{},[r.tdA,r.tdM]));selRows.push(r);return;}
+    if(L.id==null){tb.appendChild(el('tr',{},[el('td',{class:'lbl '+(L.cls||''),text:L.label,colspan:'2'})]));return;}
+    const inp=money(L.id,L.label),td=el('td',{class:'money'},[inp]);
+    tb.appendChild(el('tr',{},[el('td',{class:'lbl '+(L.cls||''),text:L.label}),td]));
+    items.push({inp,td,val:L.val,check:L.check});
+  });
+  return {table:el('div',{class:'scroll'},[el('table',{class:'pad'},[el('thead',{},[el('tr',{},[el('th',{text:''}),el('th',{class:'num',text:'Amount'})])]),tb])]),items,selRows};
+}
+
+function render(){
+  const app=document.getElementById('app'); app.innerHTML=''; graders=[];
+  const {A,keys,B,p}=P; const ck='c'+P.p.code+'-';
+  document.getElementById('title').textContent=P.co+' — Accounting Cycle';
+  document.getElementById('code-txt').textContent=P.p.code;
+  const dateLbl=d=>d;
+
+  /* Problem */
+  const coaGroups=[['Assets','APC'],['Liabilities','L'],["Owner's equity",'OD'],['Revenue','R'],['Expenses','E']];
+  const coa=el('div',{class:'coa'},coaGroups.map(([h,t])=>el('div',{},[el('b',{text:h})].concat(keys.filter(k=>t.includes(A[k].t)).map(k=>el('span',{text:A[k].no+' '+A[k].name}))))));
+  const tx=el('table',{class:'plain'},[el('thead',{},[el('tr',{},[el('th',{text:'Date'}),el('th',{text:P.M+' transaction'})])]),el('tbody',{},P.T.map((t,i)=>el('tr',{},[el('td',{text:i===0?P.Ma+' '+t.d:String(t.d)}),el('td',{text:t.text})])))]);
+  const adjL=el('ol',{class:'adj',type:'a'},P.ADJ.map(a=>el('li',{text:a.text})));
+  app.appendChild(sheet('s-problem','The problem','',[
+    el('p',{class:'biz',text:`${P.owner} opened ${P.co} on ${P.M} 1, 20Y6. The business ${B.does}, working out of ${B.space}. It is a sole proprietorship, uses the accrual basis, and has a one-month accounting period.`}),
+    el('h3',{text:'Chart of accounts'}),coa,
+    el('div',{class:'scroll'},[tx]),
+    el('h3',{text:`Adjustment data, ${P.M} 31`}),adjL
+  ]));
+  app.lastChild.chip.remove();
+
+  /* 1. Journal */
+  const J=journalTable(ck+'j',P.T,(b,i)=>i===0?P.Ma+' '+b.d:String(b.d));
+  const jStat=el('span',{class:'status'});
+  const sJ=sheet('s-journal','General Journal','Req. 1 · Step 1',[el('p',{class:'hint',text:'Each transaction has one line per account in its entry. Debits go on the first lines, credits after.'}),J.table,el('div',{class:'foot-row'},[jStat])]);
+  app.appendChild(sJ);
+  graders.push(()=>{let ok=0,t=0;J.rowsAll.forEach(b=>{const g=gradeEntry(b.rows,b.sol);ok+=g.ok;t+=g.total;});totalsStatus(J.rowsAll.flatMap(b=>b.rows),J.fd,J.fc,jStat);secScore(sJ.chip,ok,t);return {ok,total:t};});
+
+  /* 2. T accounts (scratch) */
+  const tg=el('div',{class:'tgrid'});
+  keys.forEach(k=>{const L=el('div',{class:'t-side'}),R=el('div',{class:'t-side'});for(let i=0;i<7;i++){L.appendChild(field(ck+'t'+k+'l'+i,{inputmode:'decimal','aria-label':A[k].name+' debit '+(i+1)}));R.appendChild(field(ck+'t'+k+'r'+i,{inputmode:'decimal','aria-label':A[k].name+' credit '+(i+1)}));}
+    L.appendChild(field(ck+'t'+k+'lb',{class:'bal',placeholder:'Bal.',inputmode:'decimal','aria-label':A[k].name+' debit balance'}));R.appendChild(field(ck+'t'+k+'rb',{class:'bal',placeholder:'Bal.',inputmode:'decimal','aria-label':A[k].name+' credit balance'}));
+    tg.appendChild(el('div',{class:'taccount'},[el('div',{class:'t-title'},[el('span',{text:A[k].name}),el('span',{text:String(A[k].no)})]),el('div',{class:'t-body'},[L,R])]));});
+  const sT=sheet('s-ledger','Ledger (T Accounts)','Req. 2 · Step 2',[el('p',{class:'hint',text:'Your work area for posting. T accounts are not scored; the balances you compute here are checked in the trial balances.'}),tg]);
+  sT.chip.remove(); app.appendChild(sT);
+
+  /* 3. Unadjusted TB */
+  function tbSection(id,title,step,expected,pre){
+    const T2=tbTable(ck+pre,expected.length),st=el('span',{class:'status'});
+    const s=sheet(id,title,step,[el('p',{class:'hint',text:'List each account with a balance, in chart-of-accounts order, with its balance on the normal side.'}),T2.table,el('div',{class:'foot-row'},[st])]);
+    app.appendChild(s);
+    graders.push(()=>{const g=gradeTB(T2.rows,expected);totalsStatus(T2.rows,T2.fd,T2.fc,st);secScore(s.chip,g.ok,g.total);return g;});
+  }
+  tbSection('s-utb',`Unadjusted Trial Balance, ${P.M} 31`,'Req. 3 · Step 3',P.tbUnadj,'u');
+
+  /* 4. Adjusting entries */
+  const AJ=journalTable(ck+'a',P.ADJ,(b)=>b.label); const aStat=el('span',{class:'status'});
+  const sA=sheet('s-adj','Adjusting Entries','Req. 4 · Steps 4 and 6',[el('p',{class:'hint',text:'One entry per item of adjustment data, in the same order. Post them to your T accounts.'}),AJ.table,el('div',{class:'foot-row'},[aStat])]);
+  app.appendChild(sA);
+  graders.push(()=>{let ok=0,t=0;AJ.rowsAll.forEach(b=>{const g=gradeEntry(b.rows,b.sol);ok+=g.ok;t+=g.total;});totalsStatus(AJ.rowsAll.flatMap(b=>b.rows),AJ.fd,AJ.fc,aStat);secScore(sA.chip,ok,t);return {ok,total:t};});
+
+  /* 5. Adjusted TB */
+  tbSection('s-atb',`Adjusted Trial Balance, ${P.M} 31`,'Req. 5 · Step 7',P.tbAdj,'x');
+
+  /* 6a. Income statement */
+  const isE=P.is.expK;
+  const isT=stmtTable([{label:'Fees earned',id:ck+'is-rev',val:P.is.rev,cls:'strong'},{label:'Expenses:'}].concat(isE.map((k,i)=>({label:'Expense '+(i+1),sel:{id:ck+'is-e'+i,filter:k2=>A[k2].t==='E'}}))).concat([{label:'Total expenses',id:ck+'is-te',val:P.is.te,cls:'in2'},{label:'Net income',id:ck+'is-ni',val:P.is.ni,cls:'strong'}]));
+  const isNote=el('p',{class:'note'});
+  const sIS=sheet('s-is','Income Statement',`Req. 6a · For the month ended ${P.M} 31, 20Y6`,[el('p',{class:'hint',text:'Choose each expense and enter its amount, largest first.'}),isT.table,isNote]);
+  app.appendChild(sIS);
+  graders.push(()=>{
+    const g=gradeFixed(isT.items); let ok=g.ok,t=g.total+isE.length*2; const used={}; const seq=[];
+    isT.selRows.forEach(r=>{mark(r.tdA,null);mark(r.tdM,null);const a=r.sel.value,raw=r.m.value.trim();if(!a&&!raw)return;
+      if(!a||!isE.includes(a)||used[a]){mark(r.tdA,false);if(raw)mark(r.tdM,false);return;}
+      used[a]=1;mark(r.tdA,true);ok++;if(raw){const gg=eq(num(raw),P.adj[a]);mark(r.tdM,gg);if(gg){ok++;seq.push(P.adj[a]);}}});
+    const sorted=seq.every((v,i)=>i===0||v<=seq[i-1]);
+    isNote.textContent=(!sorted)?'List expenses from largest to smallest.':'';
+    secScore(sIS.chip,ok,t);return {ok,total:t};});
+
+  /* 6b. Statement of owner's equity */
+  const S=P.soe;
+  const soeT=stmtTable([{label:`${P.owner}, capital, ${P.M} 1, 20Y6`,id:ck+'soe-b',val:0},{label:`Investment on ${P.M} 1, 20Y6`,id:ck+'soe-i',val:S.inv,cls:'in1'},{label:`Net income for ${P.M}`,id:ck+'soe-n',val:S.ni,cls:'in1'},{label:'Withdrawals',id:ck+'soe-w',val:S.draw,cls:'in1'},{label:"Increase in owner's equity",id:ck+'soe-c',val:S.inc},{label:`${P.owner}, capital, ${P.M} 31, 20Y6`,id:ck+'soe-e',val:S.end,cls:'strong'}]);
+  const sSOE=sheet('s-soe',"Statement of Owner's Equity",`Req. 6b · For the month ended ${P.M} 31, 20Y6`,[soeT.table]);
+  app.appendChild(sSOE);
+  graders.push(()=>{const g=gradeFixed(soeT.items);secScore(sSOE.chip,g.ok,g.total);return g;});
+
+  /* 6c. Balance sheet */
+  const b=P.bs, nm={cash:'Cash',ar:'Accounts receivable',sup:'Supplies',ppi:'Prepaid insurance',ap:'Accounts payable',wp:'Wages payable',uf:'Unearned fees'};
+  const bsLines=[{label:'Assets',cls:'strong'},{label:'Current assets:'}]
+    .concat(b.caK.map(k=>({label:nm[k],id:ck+'bs-'+k,val:P.adj[k],cls:'in1'})))
+    .concat([{label:'Total current assets',id:ck+'bs-tca',val:b.tca,cls:'in2'},{label:'Property, plant, and equipment:'},
+      {label:'Equipment',id:ck+'bs-eq',val:b.eq,cls:'in1'},{label:'Less accumulated depreciation',id:ck+'bs-ad',val:b.ad,cls:'in1'},
+      {label:'Total property, plant, and equipment',id:ck+'bs-ppe',val:b.ppe,cls:'in2'},{label:'Total assets',id:ck+'bs-ta',val:b.ta,cls:'strong'},
+      {label:'Liabilities',cls:'strong'},{label:'Current liabilities:'}])
+    .concat(b.clK.map(k=>({label:nm[k],id:ck+'bs-'+k,val:-P.adj[k],cls:'in1'})))
+    .concat([{label:'Total liabilities',id:ck+'bs-tl',val:b.tl,cls:'in2'},{label:"Owner's Equity",cls:'strong'},
+      {label:`${P.owner}, capital`,id:ck+'bs-cap',val:b.cap,cls:'in1'},{label:"Total liabilities and owner's equity",id:ck+'bs-tloe',val:b.tloe,cls:'strong'}]);
+  const bsT=stmtTable(bsLines);
+  const sBS=sheet('s-bs','Balance Sheet',`Req. 6c · ${P.M} 31, 20Y6`,[bsT.table]);
+  app.appendChild(sBS);
+  graders.push(()=>{const g=gradeFixed(bsT.items);secScore(sBS.chip,g.ok,g.total);return g;});
+
+  /* 7. Closing entries (two- or three-entry direct method both accepted) */
+  const temps=keys.filter(k=>'RED'.includes(A[k].t)&&P.adj[k]!==0);
+  const nClose=temps.length+3;
+  const CT=tbTable(ck+'cl',nClose,['Account','Debit','Credit']); const cStat=el('span',{class:'status'});
+  const cNote=el('p',{class:'note'});
+  const sC=sheet('s-close','Closing Entries','Req. 7 · Step 9',[el('p',{class:'hint',text:'Close revenue, expenses, and drawing directly to Capital. One combined revenue-and-expense entry or separate entries are both accepted. Leave extra lines blank.'}),CT.table,el('div',{class:'foot-row'},[cStat]),cNote]);
+  app.appendChild(sC);
+  graders.push(()=>{
+    let ok=0; const done={}; let capNet=0, capLines=0;
+    const capCr=[P.is.ni,P.is.rev], capDr=[P.soe.draw,P.is.te];
+    CT.rows.forEach(r=>{[r.tdA,r.tdD,r.tdC].forEach(t=>mark(t,null));const a=r.sel.value,dRaw=r.dr.value.trim(),cRaw=r.cr.value.trim(),d=num(r.dr.value),c=num(r.cr.value);
+      if(!a&&!dRaw&&!cRaw)return;
+      if(a==='cap'){mark(r.tdA,true);capLines++;
+        if(dRaw){const g=capDr.some(v=>eq(d,v))&&!cRaw;mark(r.tdD,g);if(!isNaN(d))capNet-=d;}
+        if(cRaw){const g=capCr.some(v=>eq(c,v))&&!dRaw;mark(r.tdC,g);if(!isNaN(c))capNet+=c;}
+        return;}
+      if(!a||!temps.includes(a)||done[a]){mark(r.tdA,false);if(dRaw)mark(r.tdD,false);if(cRaw)mark(r.tdC,false);return;}
+      done[a]=1;mark(r.tdA,true);ok++;
+      const wantD=A[a].t==='R',amt=Math.abs(P.adj[a]);
+      const wTd=wantD?r.tdD:r.tdC,oTd=wantD?r.tdC:r.tdD,wRaw=wantD?dRaw:cRaw,oRaw=wantD?cRaw:dRaw,wVal=wantD?d:c;
+      if(wRaw){const g=eq(wVal,amt);mark(wTd,g);if(g&&!oRaw)ok++;}
+      if(oRaw)mark(oTd,false);});
+    const capOk=capLines>0&&eq(capNet,P.is.ni-P.soe.draw);
+    if(capOk)ok+=2;
+    cNote.textContent=(capLines>0&&!capOk&&Object.keys(done).length===temps.length)?`The Capital lines should increase Capital by net income minus drawing.`:'';
+    totalsStatus(CT.rows,CT.fd,CT.fc,cStat);const t=temps.length*2+2;secScore(sC.chip,ok,t);return {ok,total:t};});
+
+  /* 8. Post-closing TB */
+  tbSection('s-pctb',`Post-Closing Trial Balance, ${P.M} 31`,'Req. 8 · Step 10',P.tbPost,'p');
+
+  /* 9. Ratios */
+  const mk=(id,lbl)=>{const i=field(id,{inputmode:'decimal','aria-label':lbl});const c=el('span',{class:'cell'},[i]);return {i,c};};
+  const wa=mk(ck+'wc-a','Current assets'),wb=mk(ck+'wc-b','Current liabilities'),wc=mk(ck+'wc-c','Working capital');
+  const ra=mk(ck+'cr-a','Current assets'),rb=mk(ck+'cr-b','Current liabilities'),rc=mk(ck+'cr-c','Current ratio');
+  const ta=el('textarea',{id:ck+'ratio-notes','aria-label':'Interpretation'}); if(store[ck+'ratio-notes'])ta.value=store[ck+'ratio-notes']; ta.addEventListener('input',()=>{store[ta.id]=ta.value;save();});
+  const sR=sheet('s-ratios','Working Capital and Current Ratio','Req. 9',[
+    el('div',{class:'calc'},[el('span',{class:'name',text:'Working capital'}),wa.c,el('span',{text:'−'}),wb.c,el('span',{text:'='}),wc.c]),
+    el('div',{class:'calc'},[el('span',{class:'name',text:'Current ratio'}),ra.c,el('span',{text:'÷'}),rb.c,el('span',{text:'='}),rc.c]),
+    el('label',{class:'hint',for:ta.id,text:'In a sentence or two: what do these numbers say about the business’s ability to pay its short-term debts? (Not scored.)'}),ta]);
+  app.appendChild(sR);
+  graders.push(()=>{const g=gradeFixed([{inp:wa.i,td:wa.c,val:P.bs.tca},{inp:wb.i,td:wb.c,val:P.bs.tl},{inp:wc.i,td:wc.c,val:P.wc},{inp:ra.i,td:ra.c,val:P.bs.tca},{inp:rb.i,td:rb.c,val:P.bs.tl},{inp:rc.i,td:rc.c,check:v=>!isNaN(v)&&Math.abs(v-P.cr)<0.0051}]);secScore(sR.chip,g.ok,g.total);return g;});
+
+  /* Answer key + reset */
+  const keyBox=el('div',{class:'key'}); const keyCtl=el('div',{class:'tools'});
+  const sK=sheet('s-key','Answer Key and Reset','',[el('p',{class:'hint',text:'Check your work first. The key shows every answer for this problem code.'}),keyCtl,keyBox]);
+  sK.chip.remove(); app.appendChild(sK);
+  function ctlIdle(){keyCtl.innerHTML='';const s=el('button',{type:'button',text:keyBox.childNodes.length?'Hide answer key':'Show answer key'});s.addEventListener('click',()=>{if(keyBox.childNodes.length){keyBox.innerHTML='';ctlIdle();}else confirmBox('Show every answer for this problem?','Show answers',()=>{renderKey(keyBox);ctlIdle();});});
+    const c=el('button',{type:'button',class:'danger',text:'Clear my work'});c.addEventListener('click',()=>confirmBox('Erase everything you entered on this problem?','Erase my work',()=>{store={};try{localStorage.removeItem(KEY);}catch(e){}render();gradeAll();say('Work cleared.');}));
+    keyCtl.append(s,c);}
+  function confirmBox(q,yesTxt,fn){keyCtl.innerHTML='';const y=el('button',{type:'button',class:'danger',text:yesTxt}),n=el('button',{type:'button',text:'Cancel'});y.addEventListener('click',fn);n.addEventListener('click',ctlIdle);keyCtl.appendChild(el('span',{class:'confirm'},[q+' ',y,n]));n.focus();}
+  ctlIdle();
+}
+
+function renderKey(box){
+  const A=P.A, nm=k=>A[k].name;
+  const jt=(blocks,lab)=>el('div',{class:'scroll'},[el('table',{class:'plain'},[el('thead',{},[el('tr',{},[el('th',{text:''}),el('th',{text:'Account'}),el('th',{text:'Debit'}),el('th',{text:'Credit'})])]),el('tbody',{},blocks.flatMap((b,i)=>b.lines.map((l,j)=>el('tr',{},[el('td',{text:j===0?lab(b,i):''}),el('td',{text:(l.cr?' ':'')+nm(l.a)}),el('td',{class:'r',text:l.dr?fmt(l.dr):''}),el('td',{class:'r',text:l.cr?fmt(l.cr):''})]))))])]);
+  const tbt=list=>{const d=list.reduce((s,x)=>s+(x.dr||0),0);return el('div',{class:'scroll'},[el('table',{class:'plain'},[el('tbody',{},list.map(x=>el('tr',{},[el('td',{text:A[x.a].no+' '+nm(x.a)}),el('td',{class:'r',text:x.dr?fmt(x.dr):''}),el('td',{class:'r',text:x.cr?fmt(x.cr):''})])).concat([el('tr',{},[el('td',{text:'Totals'}),el('td',{class:'r',text:fmt(d)}),el('td',{class:'r',text:fmt(d)})])]))])]);};
+  const two=rows=>el('div',{class:'scroll'},[el('table',{class:'plain'},[el('tbody',{},rows.map(([l,v])=>el('tr',{},[el('td',{text:l}),el('td',{class:'r',text:v==null?'':fmt(v)})])))])]);
+  const b=P.bs;
+  box.append(
+    el('h3',{text:'Journal entries'}),jt(P.T,(t,i)=>i===0?P.Ma+' '+t.d:String(t.d)),
+    el('h3',{text:'Unadjusted trial balance'}),tbt(P.tbUnadj),
+    el('h3',{text:'Adjusting entries'}),jt(P.ADJ,a=>a.label),
+    el('h3',{text:'Adjusted trial balance'}),tbt(P.tbAdj),
+    el('h3',{text:'Income statement'}),two([['Fees earned',P.is.rev]].concat(P.is.expK.map(k=>[' '+nm(k),P.adj[k]])).concat([['Total expenses',P.is.te],['Net income',P.is.ni]])),
+    el('h3',{text:"Statement of owner's equity"}),two([['Capital, beginning',0],['Investment',P.soe.inv],['Net income',P.soe.ni],['Withdrawals',P.soe.draw],["Increase in owner's equity",P.soe.inc],['Capital, ending',P.soe.end]]),
+    el('h3',{text:'Balance sheet'}),two(b.caK.map(k=>[' '+nm(k),P.adj[k]]).concat([['Total current assets',b.tca],[' Equipment',b.eq],[' Less accumulated depreciation',b.ad],['Total property, plant, and equipment',b.ppe],['Total assets',b.ta]]).concat(b.clK.map(k=>[' '+nm(k),-P.adj[k]])).concat([['Total liabilities',b.tl],[P.owner+', capital',b.cap],["Total liabilities and owner's equity",b.tloe]])),
+    el('h3',{text:'Closing entries'}),jt(P.closing,c=>String(c.e)),
+    el('h3',{text:'Post-closing trial balance'}),tbt(P.tbPost),
+    el('h3',{text:'Ratios'}),two([['Working capital',P.wc],['Current ratio',null]]),
+    el('p',{class:'hint',text:'Current ratio = '+fmt(b.tca)+' ÷ '+fmt(b.tl)+' = '+P.cr.toFixed(2)})
+  );
+}
+
+function gradeAll(){let ok=0,t=0;graders.forEach(g=>{const r=g();ok+=r.ok;t+=r.total;});document.getElementById('score-txt').textContent=ok+' / '+t+' correct';document.getElementById('score-fill').style.width=(t?ok/t*100:0)+'%';}
+function say(m){const e=document.getElementById('msg');e.textContent=m;clearTimeout(say.t);say.t=setTimeout(()=>e.textContent='',4000);}
+
+function open(code){
+  code=String(code||'').trim().toUpperCase();
+  let params;
+  if(!code||code==='HAYES')params=HAYES;
+  else if(/^\d{1,9}$/.test(code))params=randomParams(parseInt(code,10));
+  else {say('Codes are HAYES or a number, like 48213.');return false;}
+  P=buildProblem(params); KEY='cyc-work-'+P.p.code; loadStore(); render(); gradeAll();
+  try{history.replaceState(null,'','#'+(P.p.code==='HAYES'?'hayes':'p'+P.p.code));}catch(e){}
+  window.scrollTo({top:0});
+  return true;
+}
+window.__cycle={get P(){return P;},open};
+
+document.getElementById('new-btn').addEventListener('click',()=>{const c=10000+Math.floor(Math.random()*89999);if(open(c))say('New problem loaded. Share code '+c+' so everyone works the same version.');});
+document.getElementById('load-btn').addEventListener('click',()=>{const v=document.getElementById('code-in').value;if(open(v))say('Loaded problem '+P.p.code+'.');});
+document.getElementById('code-in').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('load-btn').click();});
+document.getElementById('hayes-btn').addEventListener('click',()=>{open('HAYES');say('Loaded the class version.');});
+
+const h=(location.hash||'').replace('#','');
+open(/^p\d+$/i.test(h)?h.slice(1):'HAYES');
+})();
+</script>
+</body>
+</html>
