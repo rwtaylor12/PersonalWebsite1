@@ -205,6 +205,71 @@ function initContactForm() {
   });
 }
 
+/* ---------- Projects page: rotating showcase ---------- */
+const CAROUSEL_SECONDS = 7;
+
+function initCarousel() {
+  const root = document.querySelector("[data-carousel]");
+  if (!root) return;
+  const slides = [...root.querySelectorAll(".carousel-slide")];
+  const dots = root.querySelector(".carousel-dots");
+  root.style.setProperty("--carousel-ms", `${CAROUSEL_SECONDS * 1000}ms`);
+  dots.innerHTML = slides
+    .map((s, n) => `<button type="button" role="tab" aria-label="${s.getAttribute("aria-label") || `Project ${n + 1}`}"></button>`)
+    .join("");
+  const dotBtns = [...dots.children];
+
+  let current = 0;
+  let timer;
+  const show = (n) => {
+    const prev = slides[current];
+    current = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => {
+      s.classList.toggle("is-active", k === current);
+      s.classList.toggle("is-leaving", s === prev && k !== current);
+      s.inert = k !== current; // keep hidden slides out of tab order
+    });
+    dotBtns.forEach((d, k) => d.setAttribute("aria-selected", String(k === current)));
+  };
+  // Restart the active dot's progress bar so it lines up with the timer.
+  const restartBar = () => {
+    const d = dotBtns[current];
+    d.setAttribute("aria-selected", "false");
+    void d.offsetWidth;
+    d.setAttribute("aria-selected", "true");
+  };
+  let hovered = false;
+  let focused = false;
+  const start = () => {
+    clearInterval(timer);
+    restartBar();
+    const paused = hovered || focused || reduceMotion || slides.length < 2;
+    root.classList.toggle("is-paused", paused);
+    if (!paused) timer = setInterval(() => { show(current + 1); restartBar(); }, CAROUSEL_SECONDS * 1000);
+  };
+  const go = (n) => { show(n); start(); };
+
+  dots.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) go(dotBtns.indexOf(b)); });
+  root.querySelector("[data-carousel-prev]").addEventListener("click", () => go(current - 1));
+  root.querySelector("[data-carousel-next]").addEventListener("click", () => go(current + 1));
+  // Hold still while someone is reading or using it.
+  root.addEventListener("mouseenter", () => { hovered = true; start(); });
+  root.addEventListener("mouseleave", () => { hovered = false; start(); });
+  root.addEventListener("focusin", () => { focused = true; start(); });
+  root.addEventListener("focusout", (e) => { if (!root.contains(e.relatedTarget)) { focused = false; start(); } });
+  // Swipe on touch screens.
+  let x0 = null;
+  root.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  root.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+  show(0);
+  start();
+}
+
 /* ---------- Projects page: tag filter ---------- */
 function initProjectFilter() {
   const bar = document.querySelector("[data-filter-bar]");
@@ -274,6 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initBanner();
   initRolodex();
   initContactForm();
+  initCarousel();
   initProjectFilter();
   initPromptAnatomy();
   initCopyButtons();
