@@ -343,6 +343,21 @@ details[open] summary { margin-bottom: 8px; }
 }
 @media print { .dinos { display: none; } }
 
+/* ---------- AI Lab ---------- */
+.lab-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+.lab-stats div { padding: 18px 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+.lab-stats b { display: block; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--accent); }
+.lab-stats span { display: block; margin-top: 6px; color: var(--muted); font-size: 0.9rem; }
+.lab-steps { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 20px; }
+.step-num { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: var(--bg); font-weight: 700; font-size: 0.95rem; }
+.lab-sub { margin-top: 32px; }
+.lab-tools { display: flex; flex-wrap: wrap; gap: 8px; }
+.lab-tools .tag { font-size: 0.85rem; padding: 5px 12px; }
+#build-log details pre + pre { margin-top: 8px; }
+@media (max-width: 680px) {
+  .lab-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* ---------- Print (makes the resume page print cleanly to PDF) ---------- */
 @media print {
   #site-header, #site-footer, .no-print { display: none !important; }

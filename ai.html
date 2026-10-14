@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Lab · Ryan W Taylor</title>
-  <meta name="description" content="How Ryan W Taylor is learning to prompt, build and code with AI.">
+  <meta name="description" content="How Ryan W Taylor built this website with AI in two evenings: the process, every prompt, and what he learned.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,18 +20,141 @@
       <p class="eyebrow">AI Lab</p>
       <h1>Learning to build with AI</h1>
       <p class="lead">
-        I'm early in my AI journey, and this page is where I show my work as I go:
-        the prompts I write, what I've built, and what I'm learning along the way.
+        I'm early in my AI journey, and this page is where I show my work: the prompts I write,
+        what came back, and what I learned along the way.
       </p>
       <div class="callout">
-        <p><b>This whole website is an AI experiment.</b> I built it by pairing with an AI coding assistant,
-        then edited and personalized it myself. The <a href="#build-log">build log</a> below shows how.</p>
+        <p><b>This whole website is an AI experiment.</b> I built it in two evenings by describing what I wanted
+        to Claude Code, an AI coding assistant, in plain English. I didn't write any of the code by hand. I made the
+        decisions, gave the feedback and supplied the content. The <a href="#build-log">build log</a> below shows every step.</p>
+      </div>
+      <div class="lab-stats">
+        <div><b>2</b><span>evenings</span></div>
+        <div><b>~25</b><span>prompts</span></div>
+        <div><b>16</b><span>published updates</span></div>
+        <div><b>0</b><span>lines of code typed by me</span></div>
+      </div>
+    </section>
+
+    <!-- ===== HOW WE WORK ===== -->
+    <section>
+      <p class="eyebrow">The process</p>
+      <h2>How we built it</h2>
+      <p class="muted">Every change followed the same loop.</p>
+      <div class="grid lab-steps">
+        <div class="card"><span class="step-num">1</span><h3>I describe it</h3><p>Plain English, like talking to a person: what I want, what I don't like, and what to keep. I attach things when I have them (my resume, photos, apps I'd built before).</p></div>
+        <div class="card"><span class="step-num">2</span><h3>The AI builds and tests</h3><p>Claude Code writes the HTML, CSS and JavaScript, then opens the site in a real browser to check it on a computer and a phone, in light and dark mode, before showing me screenshots.</p></div>
+        <div class="card"><span class="step-num">3</span><h3>I react</h3><p>I look at the screenshots or the live site and push back: "too basic," "the fish is cut off," "don't overdo it." Then we go around again.</p></div>
+        <div class="card"><span class="step-num">4</span><h3>It goes live</h3><p>Each finished change is saved to GitHub, and GitHub Pages publishes it to this site a minute or two later. Every step is tracked, so nothing is lost.</p></div>
+      </div>
+      <h3 class="lab-sub">What's under the hood</h3>
+      <div class="tags lab-tools">
+        <span class="tag">Claude Code (AI coding assistant)</span>
+        <span class="tag">Plain HTML, CSS &amp; JavaScript</span>
+        <span class="tag">GitHub (version history)</span>
+        <span class="tag">GitHub Pages (free hosting)</span>
+        <span class="tag">FormSubmit (contact form email)</span>
+        <span class="tag">Chart.js (tracker charts)</span>
+        <span class="tag">Playwright (the AI's test browser)</span>
+      </div>
+    </section>
+
+    <!-- ===== BUILD LOG — keep adding entries as you change the site ===== -->
+    <section id="build-log">
+      <p class="eyebrow">Build log</p>
+      <h2>The prompt trail</h2>
+      <p class="muted">Every change to this site started with a prompt. Here they are, in order, in my own words.</p>
+
+      <details open>
+        <summary>v1 — The first prompt</summary>
+        <p>The very first thing I typed into Claude Code:</p>
+        <pre class="anatomy-prompt" style="line-height:1.6">I am wanting to build a personal website, a few different tabs/landing pages to show off my personality, projects, CV/resume, and show my (currently limited) ability to prompt/use/code with AI.</pre>
+        <p><b>What came back:</b> a four-page site (About, Projects, Resume, AI Lab) with a dark mode and placeholder text everywhere.</p>
+        <p><b>What I learned:</b> a short prompt works, but the AI has to guess a lot (my name, my style, my projects). Every prompt after this one gave it more context.</p>
+      </details>
+
+      <details>
+        <summary>v2 — Make it mine</summary>
+        <p>The AI gave me a fill-in-the-blanks template. I filled in what I was ready to share and told it to skip the rest:</p>
+        <pre class="anatomy-prompt" style="line-height:1.6">One-line intro: the road goes on forever, the party never ends --include hyperlink to the Robert Earl Keen Song on YouTube.
+Short bio: I'm Ryan --&gt; Business Faculty @ SAU Tech / Dad to Owen (4) &amp; Reid (1) / Husband to Haley (Age N/A) / ...
+Jobs: (lets just upload the resume later and skip this)
+Colour/style preference: Blues &amp; grays, modern/sleek style.</pre>
+        <p><b>What came back:</b> my real About page, a blue-and-gray theme and my name across the site.</p>
+        <p><b>What I learned:</b> I paused the AI halfway through ("I need to keep working on that. Pause.") and it stopped cleanly. Finishing my notes and sending everything at once beat rushing.</p>
+      </details>
+
+      <details>
+        <summary>v3 — "The most basic AI website ever"</summary>
+        <p>I didn't like how it looked, so I said exactly why and described what I wanted instead:</p>
+        <pre class="anatomy-prompt" style="line-height:1.6">I hate the tiles w/ emojis. The website currently looks like the most basic AI website ever. I'd like a rotating banner that I can customize with images that rotate behind my name &amp; bio details. I don't mind tiles in a row below that banner that can take visitors to second pages. ... Make the "about me" section dynamic as well. Like a rolodex that spins through the details every few seconds.</pre>
+        <p><b>What came back:</b> the full-width rotating banner, the flipping "rolodex" of facts about me, and the row of page tiles. Every emoji gone.</p>
+        <p><b>What I learned:</b> honest feedback beats polite feedback. Saying what I hated, what I liked and what to keep gave the AI a clear target.</p>
+      </details>
+
+      <details>
+        <summary>v4 — Make it read like a sentence</summary>
+        <pre class="anatomy-prompt" style="line-height:1.6">Let's take out the tabs right below the rolodex, since we already have larger tiles right below them. ... I want it to say "I'm Ryan --&gt; (arrow) and then change the phrases to make syntaxial/grammatical sense. Don't overdo it.</pre>
+        <p><b>What came back:</b> "I'm Ryan →" followed by phrases that finish the sentence, like "dad to Owen (4) &amp; Reid (1)." Later I rewrote all twelve phrases myself, word for word.</p>
+        <p><b>What I learned:</b> "Don't overdo it" is a useful instruction. And sometimes it's fastest to write the words yourself and let the AI handle the layout.</p>
+      </details>
+
+      <details>
+        <summary>v5 — A contact form and my real resume</summary>
+        <pre class="anatomy-prompt" style="line-height:1.6">Let's work on the "Say Hello" tab. ... let it take you to a short contact form. If someone fills it out, have it send an email to [me]. Also, I have attached my resume. Under the Resume tab, make sure the actual resume can be viewed with one click. Allow people to download it as a PDF.</pre>
+        <p><b>What came back:</b> a <a href="contact.html">contact form</a> that emails me, and a <a href="resume.html">resume page</a> built from my PDF with one-click View and Download buttons.</p>
+        <p><b>What I learned:</b> before publishing, the AI pointed out that my resume listed my home address and cell number, and asked what I wanted to do. The public copy has both removed. That's a privacy check I wouldn't have thought of.</p>
+      </details>
+
+      <details>
+        <summary>v6 — Real photos, without taking over</summary>
+        <pre class="anatomy-prompt" style="line-height:1.6">Here are some photos to scroll across the home page. Maybe make them semi-transparent? I don't want them to totally overtake the theme of the website.</pre>
+        <pre class="anatomy-prompt" style="line-height:1.6">Let's resize the photos so the fish, the kids, etc. are visible as well if possible.</pre>
+        <p><b>What came back:</b> my photos fading behind the banner at half strength, then each one shown whole with a soft, blurred copy filling the space around it.</p>
+        <p><b>What I learned:</b> my iPhone photos had the GPS location of where they were taken hidden inside them. The AI stripped that out before posting. Also, describing the problem ("the fish is cut off") worked better than guessing at a fix.</p>
+      </details>
+
+      <details>
+        <summary>v7 — Projects I'd already built</summary>
+        <pre class="anatomy-prompt" style="line-height:1.6">Can you put this small workout tracker I built underneath the Projects tab? Enter some false data into it a few times so users can see how it works.</pre>
+        <pre class="anatomy-prompt" style="line-height:1.6">Add this Accounting I Chapter 4 Comprehensive Problem to the website under Projects. ... Feel free to change the theme/look to match my website.</pre>
+        <pre class="anatomy-prompt" style="line-height:1.6">Make my projects scroll automatically (like the pictures on the home page).</pre>
+        <p><b>What came back:</b> my <a href="projects/5x5-tracker.html">5×5 tracker</a> loaded with nine made-up workouts, my <a href="projects/accounting-cycle.html">accounting problem</a> restyled to match the site, and a rotating showcase on the <a href="projects.html">Projects</a> page.</p>
+        <p><b>What I learned:</b> apps I'd built in earlier AI chats dropped right in. The AI can pick up its own earlier work, restyle it and add sample data.</p>
+      </details>
+
+      <details>
+        <summary>v8 — Owen &amp; Reid, the easter egg</summary>
+        <pre class="anatomy-prompt" style="line-height:1.6">Do you think we could build a little animation that randomly pops up around the website ... and asks if a visitor wants a quote, a riddle, a music/video suggestion, a photo ... Maybe make the animation a pair of cartoon dinosaurs named Owen and Reid? Owen should be orange, Reid should be blue.</pre>
+        <p>Then, one improvement per prompt: a "Something else" button, exact YouTube links for my song picks, no videos, and "Here's two!" photos.</p>
+        <p><b>What came back:</b> two cartoon dinosaurs who pop up now and then with a quote, riddle, song or photos. (Psst: type <b>rawr</b> on any page.)</p>
+        <p><b>What I learned:</b> big creative ideas work best in layers. Get a basic version working, then add one thing at a time. And the AI won't guess what it can't know: it asked me for the exact YouTube links instead of making them up.</p>
+      </details>
+
+      <details>
+        <summary>v9 — This page</summary>
+        <pre class="anatomy-prompt" style="line-height:1.6">Update the info on the AI Lab page. Include new/updated info on how we've gone about building the site.</pre>
+        <p><b>What came back:</b> what you're reading now.</p>
+      </details>
+    </section>
+
+    <!-- ===== PRINCIPLES ===== -->
+    <section>
+      <p class="eyebrow">Rules of thumb</p>
+      <h2>What I've learned so far</h2>
+      <div class="grid">
+        <div class="card"><h3>1. Context beats cleverness</h3><p>Most bad results came from missing information, not bad wording. My resume, photos and real phrases did more than any fancy prompt.</p></div>
+        <div class="card"><h3>2. Say what you hate, and what to keep</h3><p>"I hate the tiles w/ emojis" plus "I like the resume and projects buttons" turned a generic site into mine.</p></div>
+        <div class="card"><h3>3. Give it what it can't guess</h3><p>Exact links, my own photos, my own words. The AI asked rather than inventing them, and the result was better for it.</p></div>
+        <div class="card"><h3>4. Let it check privacy</h3><p>Home address, phone number, photo locations: the AI flagged each before anything went public.</p></div>
+        <div class="card"><h3>5. One change at a time</h3><p>Small rounds made it easy to see what worked, and to undo what didn't.</p></div>
+        <div class="card"><h3>6. Check the real thing</h3><p>Look at the live site on your own phone. (And if it looks old, refresh. Browsers hang on to saved copies.)</p></div>
       </div>
     </section>
 
     <!-- ===== INTERACTIVE: anatomy of a good prompt ===== -->
     <section>
-      <p class="eyebrow">What I've learned</p>
+      <p class="eyebrow">Prompting basics</p>
       <h2>Anatomy of a good prompt</h2>
       <p class="muted">Click each highlighted part to see why it's there.</p>
       <div class="card" data-anatomy>
@@ -49,8 +172,14 @@
     <!-- ===== PROMPT LIBRARY — add your favourite prompts here ===== -->
     <section>
       <p class="eyebrow">Prompt library</p>
-      <h2>Prompts I actually use</h2>
+      <h2>Prompts worth stealing</h2>
       <div class="grid">
+        <article class="card prompt-card">
+          <span class="tag">Feedback</span>
+          <h3>The honest redesign</h3>
+          <pre id="p4">Here's what I don't like about this: [be blunt]. Here's what I like and want to keep: [list]. Here's what I want instead: [describe it, with an example if you have one]. Don't overdo it.</pre>
+          <button class="btn btn-ghost" data-copy="p4">Copy prompt</button>
+        </article>
         <article class="card prompt-card">
           <span class="tag">Learning</span>
           <h3>Explain it back to me</h3>
@@ -69,57 +198,6 @@
           <pre id="p3">Before writing any code, describe your plan in plain English: which files you'll change, what each change does, and any risks. Wait for my OK before you start.</pre>
           <button class="btn btn-ghost" data-copy="p3">Copy prompt</button>
         </article>
-      </div>
-    </section>
-
-    <!-- ===== BUILD LOG — keep adding entries as you change the site ===== -->
-    <section id="build-log">
-      <p class="eyebrow">Build log</p>
-      <h2>How this site was built</h2>
-      <p class="muted">Every change to this site starts with a prompt. Here's the trail.</p>
-
-      <details open>
-        <summary>v1 — The first prompt</summary>
-        <p>The very first thing I typed into Claude Code:</p>
-        <pre class="anatomy-prompt" style="line-height:1.6">I am wanting to build a personal website, a few different tabs/landing pages to show off my personality, projects, CV/resume, and show my (currently limited) ability to prompt/use/code with AI.</pre>
-        <p><b>What came back:</b> a four-page static site (About, Projects, Resume, AI Lab) using plain HTML, CSS and JavaScript, plus a dark mode and a printable resume.</p>
-        <p><b>What I learned:</b> a short prompt works, but the AI has to guess a lot (my name, my style, my projects). My next prompts give it much more context.</p>
-      </details>
-
-      <details>
-        <summary>v2 — Make it mine</summary>
-        <p>The AI gave me a fill-in-the-blanks template. I filled in the parts I was ready to share and told it to skip the rest:</p>
-        <pre class="anatomy-prompt" style="line-height:1.6">One-line intro: the road goes on forever, the party never ends --include hyperlink to the Robert Earl Keen Song on YouTube.
-Short bio: I'm Ryan --> Business Faculty @ SAU Tech / Dad to Owen (4) &amp; Reid (1) / Husband to Haley (Age N/A) / ...
-Jobs: (lets just upload the resume later and skip this)
-Colour/style preference: Blues &amp; grays, modern/sleek style.</pre>
-        <p><b>What came back:</b> my real About page, a cooler blue-and-gray theme with sleeker headings, and my name across the site.</p>
-        <p><b>What I learned:</b> I paused the AI halfway through ("I need to keep working on that. Pause.") and it stopped cleanly. Pausing, finishing my own notes and then sending everything at once gave a better result than rushing.</p>
-      </details>
-
-      <details>
-        <summary>v3 — "The most basic AI website ever"</summary>
-        <p>I didn't like how v2 looked, so I said exactly why and described what I wanted instead:</p>
-        <pre class="anatomy-prompt" style="line-height:1.6">I hate the tiles w/ emojis. The website currently looks like the most basic AI website ever. I'd like a rotating banner that I can customize with images that rotate behind my name &amp; bio details. I don't mind tiles in a row below that banner that can take visitors to second pages. I like the "read my resume" and "see my projects" tabs. Make the "about me" section dynamic as well. Like a rolodex that spins through the details every few seconds.</pre>
-        <p><b>What came back:</b> a full-width banner with crossfading photos, a "rolodex" that flips through facts about me, and a row of page tiles. All the emojis are gone.</p>
-        <p><b>What I learned:</b> honest feedback works better than polite feedback. Saying what I hated, what I liked and what to keep gave the AI a clear target.</p>
-      </details>
-
-      <details>
-        <summary>v4 — Up next: resume &amp; projects</summary>
-        <p>Upload my resume, describe my projects, and swap in my own banner photos.</p>
-      </details>
-    </section>
-
-    <!-- ===== PRINCIPLES ===== -->
-    <section>
-      <p class="eyebrow">Rules of thumb</p>
-      <h2>What I've picked up so far</h2>
-      <div class="grid">
-        <div class="card"><h3>1. Context beats cleverness</h3><p>Most bad answers come from missing information, not from bad wording.</p></div>
-        <div class="card"><h3>2. Ask for a plan first</h3><p>Reviewing a plan is faster than untangling code I didn't ask for.</p></div>
-        <div class="card"><h3>3. Check its work</h3><p>AI is confident even when it's wrong. I verify facts and test anything it builds.</p></div>
-        <div class="card"><h3>4. Iterate in small steps</h3><p>One change per prompt makes it easy to see what worked and roll back what didn't.</p></div>
       </div>
     </section>
   </main>
