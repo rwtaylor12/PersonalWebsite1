@@ -1,21 +1,29 @@
 # Personal Website
 
-A simple, framework-free personal site with four pages:
+A simple, framework-free personal site:
 
 | Page | File | What it's for |
 | --- | --- | --- |
 | About | `index.html` | Intro, personality, quick facts |
-| Projects | `projects.html` | Project cards with tag filters |
-| Resume | `resume.html` | CV with a print / save-as-PDF button |
+| Projects | `projects.html` | Auto-rotating project showcase (`CAROUSEL_SECONDS` in `js/main.js`) plus a card per project |
+| 5×5 Tracker | `projects/5x5-tracker.html` | Workout tracker app, pre-loaded with sample data (`sampleEntries()`) |
+| Accounting Cycle Practice | `projects/accounting-cycle.html` | Accounting I Ch. 4 comprehensive problem: self-checking, with random problem codes and an answer key |
+| Resume | `resume.html` | Resume with one-click PDF view and download |
+| Say hello | `contact.html` | Contact form that emails Ryan |
 | AI Lab | `ai.html` | Prompt anatomy demo, prompt library, build log |
 
 ## Making it yours
 
 1. **Name, email & social links:** edit the `SITE` block at the top of `js/main.js`. The header and footer on every page are built from it.
 2. **Page content:** open each `.html` file and replace the placeholder text. Comments in the files show where and how.
-3. **Photo:** add `assets/me.jpg` and follow the comment above the avatar in `index.html`.
-4. **Resume PDF:** drop your file at `assets/resume.pdf`, or use the page's "Print / Save as PDF" button.
-5. **Colours:** change `--accent` (and friends) at the top of `css/style.css`.
+3. **Banner photos:** put images in `assets/banner/` and edit the `<img>` lines at the top of `index.html` (add or remove as many as you like). Photos show semi-transparent over the navy banner (adjust `--banner-photo-opacity` in `css/style.css`). Strip location data and resize to ~1920px before adding new ones.
+   - **"I'm Ryan" rolodex:** one fact per `<li>` just below the photos in `index.html`.
+   - **Timing:** `BANNER_SECONDS` and `ROLODEX_SECONDS` in `js/main.js`.
+4. **Resume PDF:** replace `assets/Ryan-Taylor-Resume.pdf` with your new file (keep the same name).
+5. **Contact form:** messages go through [FormSubmit](https://formsubmit.co) to the address in `contact.html` (`data-endpoint`). The first message ever sent triggers an activation email; click **Activate** once.
+6. **Owen & Reid (easter egg):** two cartoon dinosaurs that sometimes pop up offering a quote, riddle, song or photo. Edit what they offer in `js/dino-content.js`; tune how often they appear at the top of `js/dinos.js`. Type **rawr** on any page (or add `?dinos` to the URL) to summon them.
+7. **Icon & link preview:** files live in `assets/brand/` (favicon, badge, and `og-image.jpg`, the 1200×630 card shown when the link is shared).
+8. **Colours:** change `--accent` (and friends) at the top of `css/style.css`.
 
 Search for `Your Name` and `you@example.com` to catch every placeholder.
 

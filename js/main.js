@@ -3,18 +3,19 @@
    The header and footer on every page are built from these values.
    ========================================================================== */
 const SITE = {
-  name: "Your Name",
-  initials: "YN",
-  email: "you@example.com",
+  name: "Ryan W Taylor",
+  initials: "RWT",
+  email: "wryan.taylor12@gmail.com",
   links: [
     { label: "GitHub", url: "https://github.com/rwtaylor12" },
-    { label: "LinkedIn", url: "https://www.linkedin.com/in/your-handle" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/rwt12" },
   ],
   pages: [
     { label: "About", href: "index.html" },
     { label: "Projects", href: "projects.html" },
     { label: "Resume", href: "resume.html" },
     { label: "AI Lab", href: "ai.html" },
+    { label: "Say hello", href: "contact.html" },
   ],
 };
 
@@ -78,6 +79,197 @@ function renderFooter() {
     </div>`;
 }
 
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const pad = (n) => String(n).padStart(2, "0");
+
+/* ---------- Home: rotating banner images ---------- */
+const BANNER_SECONDS = 6;
+
+function initBanner() {
+  const root = document.querySelector("[data-banner]");
+  if (!root) return;
+  // Each <img> becomes a slide: the whole photo, plus a blurred copy filling the space behind it.
+  const slides = [...root.querySelectorAll(".banner-slides img")].map((img) => {
+    const slide = document.createElement("div");
+    slide.className = "banner-slide";
+    const backdrop = img.cloneNode();
+    backdrop.className = "banner-backdrop";
+    img.classList.add("banner-photo");
+    img.replaceWith(slide);
+    slide.append(backdrop, img);
+    return slide;
+  });
+  if (!slides.length) return;
+  const dots = root.querySelector(".banner-dots");
+  dots.innerHTML = slides
+    .map((_, n) => `<button type="button" role="tab" aria-label="Image ${n + 1}"></button>`)
+    .join("");
+  const dotBtns = [...dots.children];
+  if (slides.length < 2) dots.hidden = true;
+
+  let current = 0;
+  let timer;
+  const show = (n) => {
+    current = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle("is-active", k === current));
+    dotBtns.forEach((d, k) => d.setAttribute("aria-selected", String(k === current)));
+  };
+  const start = () => {
+    clearInterval(timer);
+    if (!reduceMotion && slides.length > 1) timer = setInterval(() => show(current + 1), BANNER_SECONDS * 1000);
+  };
+
+  dots.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+    show(dotBtns.indexOf(btn));
+    start();
+  });
+  show(0);
+  start();
+}
+
+/* ---------- Home: about-me rolodex ---------- */
+const ROLODEX_SECONDS = 3;
+
+function initRolodex() {
+  const root = document.querySelector("[data-rolodex]");
+  if (!root) return;
+  const cards = [...root.querySelectorAll(".rolodex-cards li")];
+  if (!cards.length) return;
+  const count = root.querySelector(".rolodex-count");
+
+  let current = 0;
+  let timer;
+  const show = (n) => {
+    const prev = cards[current];
+    current = n % cards.length;
+    cards.forEach((c) => c.classList.remove("is-active", "is-leaving"));
+    if (prev !== cards[current]) prev.classList.add("is-leaving");
+    cards[current].classList.add("is-active");
+    count.textContent = `${pad(current + 1)} / ${pad(cards.length)}`;
+  };
+  const stop = () => clearInterval(timer);
+  const start = () => {
+    stop();
+    if (!reduceMotion) timer = setInterval(() => show(current + 1), ROLODEX_SECONDS * 1000);
+  };
+
+  root.querySelector(".rolodex-window").addEventListener("click", () => {
+    show(current + 1);
+    start();
+  });
+  // Hold still while someone is reading it.
+  root.addEventListener("mouseenter", stop);
+  root.addEventListener("mouseleave", start);
+  show(0);
+  start();
+}
+
+/* ---------- Contact page: send the form without leaving the page ---------- */
+function initContactForm() {
+  const form = document.querySelector("[data-contact-form]");
+  if (!form) return;
+  const status = form.querySelector("[data-form-status]");
+  const button = form.querySelector('button[type="submit"]');
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      status.textContent = "Please fill in your name, a valid email and a message.";
+      status.dataset.state = "error";
+      form.reportValidity();
+      return;
+    }
+    button.disabled = true;
+    button.textContent = "Sending…";
+    status.textContent = "";
+    try {
+      const res = await fetch(form.dataset.endpoint, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) === "false") throw new Error(data.message || res.statusText);
+      form.reset();
+      status.textContent = "Thanks! Your message is on its way.";
+      status.dataset.state = "ok";
+    } catch {
+      status.innerHTML = `Sorry, that didn't send. You can email me directly at <a href="mailto:${SITE.email}">${SITE.email}</a>.`;
+      status.dataset.state = "error";
+    } finally {
+      button.disabled = false;
+      button.textContent = "Send message";
+    }
+  });
+}
+
+/* ---------- Projects page: rotating showcase ---------- */
+const CAROUSEL_SECONDS = 7;
+
+function initCarousel() {
+  const root = document.querySelector("[data-carousel]");
+  if (!root) return;
+  const slides = [...root.querySelectorAll(".carousel-slide")];
+  const dots = root.querySelector(".carousel-dots");
+  root.style.setProperty("--carousel-ms", `${CAROUSEL_SECONDS * 1000}ms`);
+  dots.innerHTML = slides
+    .map((s, n) => `<button type="button" role="tab" aria-label="${s.getAttribute("aria-label") || `Project ${n + 1}`}"></button>`)
+    .join("");
+  const dotBtns = [...dots.children];
+
+  let current = 0;
+  let timer;
+  const show = (n) => {
+    const prev = slides[current];
+    current = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => {
+      s.classList.toggle("is-active", k === current);
+      s.classList.toggle("is-leaving", s === prev && k !== current);
+      s.inert = k !== current; // keep hidden slides out of tab order
+    });
+    dotBtns.forEach((d, k) => d.setAttribute("aria-selected", String(k === current)));
+  };
+  // Restart the active dot's progress bar so it lines up with the timer.
+  const restartBar = () => {
+    const d = dotBtns[current];
+    d.setAttribute("aria-selected", "false");
+    void d.offsetWidth;
+    d.setAttribute("aria-selected", "true");
+  };
+  let hovered = false;
+  let focused = false;
+  const start = () => {
+    clearInterval(timer);
+    restartBar();
+    const paused = hovered || focused || reduceMotion || slides.length < 2;
+    root.classList.toggle("is-paused", paused);
+    if (!paused) timer = setInterval(() => { show(current + 1); restartBar(); }, CAROUSEL_SECONDS * 1000);
+  };
+  const go = (n) => { show(n); start(); };
+
+  dots.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) go(dotBtns.indexOf(b)); });
+  root.querySelector("[data-carousel-prev]").addEventListener("click", () => go(current - 1));
+  root.querySelector("[data-carousel-next]").addEventListener("click", () => go(current + 1));
+  // Hold still while someone is reading or using it.
+  root.addEventListener("mouseenter", () => { hovered = true; start(); });
+  root.addEventListener("mouseleave", () => { hovered = false; start(); });
+  root.addEventListener("focusin", () => { focused = true; start(); });
+  root.addEventListener("focusout", (e) => { if (!root.contains(e.relatedTarget)) { focused = false; start(); } });
+  // Swipe on touch screens.
+  let x0 = null;
+  root.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  root.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+  show(0);
+  start();
+}
+
 /* ---------- Projects page: tag filter ---------- */
 function initProjectFilter() {
   const bar = document.querySelector("[data-filter-bar]");
@@ -130,11 +322,25 @@ function initCopyButtons() {
   });
 }
 
+/* ---------- Easter egg: load Owen & Reid on every page ---------- */
+function loadDinos() {
+  for (const src of ["js/dino-content.js", "js/dinos.js"]) {
+    const s = document.createElement("script");
+    s.src = src;
+    s.async = false; // keep order: content first, then the dinosaurs
+    document.body.append(s);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  loadDinos();
   renderHeader();
   renderFooter();
+  initBanner();
+  initRolodex();
+  initContactForm();
+  initCarousel();
   initProjectFilter();
   initPromptAnatomy();
   initCopyButtons();
-  document.querySelectorAll("[data-print]").forEach((b) => b.addEventListener("click", () => print()));
 });

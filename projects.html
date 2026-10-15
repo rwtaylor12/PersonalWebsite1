@@ -3,12 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projects · Your Name</title>
-  <meta name="description" content="Projects by Your Name.">
+  <title>Projects · Ryan W Taylor</title>
+  <meta name="description" content="Projects by Ryan W Taylor.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ryan W Taylor">
+  <meta property="og:title" content="Projects · Ryan W Taylor">
+  <meta property="og:description" content="the road goes on forever and the party never ends">
+  <meta property="og:url" content="https://ryanwtaylor.com/projects.html">
+  <meta property="og:image" content="https://ryanwtaylor.com/assets/brand/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ryan W Taylor quadbox logo: an R, two cartoon dinosaurs, a largemouth bass and a basketball">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -19,60 +31,85 @@
     <section>
       <p class="eyebrow">Projects</p>
       <h1>Things I've made</h1>
-      <p class="lead">A mix of work, school and side projects. Filter by topic below.</p>
+      <p class="lead">Things I've built for my classroom and my training, with AI as my coding partner.</p>
     </section>
 
-    <section style="margin-top: 32px">
-      <!-- Filter buttons are generated automatically from each card's data-tags. -->
-      <div class="filter-bar" data-filter-bar></div>
-
-      <!--
-        TO ADD A PROJECT: copy one <article> block, then change the text,
-        links and data-tags (comma-separated). Tags also show at the bottom of the card.
-        For a screenshot, replace the .project-thumb div with:
-        <img class="project-thumb" src="assets/my-project.png" alt="Screenshot of ...">
-      -->
-      <div class="grid">
-        <article class="card project-card" data-tags="Web, AI">
-          <div class="project-thumb" aria-hidden="true">🌐</div>
-          <h3>This website</h3>
-          <p>A hand-built personal site made by pairing with an AI coding assistant. No frameworks — just HTML, CSS and a little JavaScript.</p>
-          <div class="card-links">
-            <a href="https://github.com/rwtaylor12/PersonalWebsite1" target="_blank" rel="noopener">Code</a>
-            <a href="ai.html#build-log">How I built it</a>
+    <!-- =====================================================================
+         SHOWCASE — rotates through the projects automatically.
+         TO ADD A PROJECT: copy one <article class="carousel-slide"> block.
+         ===================================================================== -->
+    <section class="carousel" data-carousel aria-roledescription="carousel" aria-label="Featured projects" style="margin-top: 40px">
+      <div class="carousel-track">
+        <article class="carousel-slide featured" aria-roledescription="slide" aria-label="5×5 Workout Tracker">
+          <div class="featured-text">
+            <p class="eyebrow">Built with AI · Fitness</p>
+            <h2>5×5 Workout Tracker</h2>
+            <p>A small app for following the StrongLifts 5×5 program. Log a session and it works out next time's weights for you: add weight after a clean workout, repeat after missed reps, and drop about 10% after three misses in a row.</p>
+            <ul class="featured-list">
+              <li>Plate math for every lift, so you know what to load on each side of the bar</li>
+              <li>Progress charts for each lift, plus body weight and how you felt</li>
+              <li>Full history with edit and delete</li>
+            </ul>
+            <p class="muted">Loaded with sample workouts so you can see how it works. Anything you log saves in your browser only.</p>
+            <div class="btn-row">
+              <a class="btn" href="projects/5x5-tracker.html" target="_blank" rel="noopener">Try the tracker</a>
+            </div>
           </div>
-          <div class="tags"><span class="tag">Web</span><span class="tag">AI</span></div>
+          <a class="device" href="projects/5x5-tracker.html" target="_blank" rel="noopener" aria-label="Open the 5×5 Workout Tracker">
+            <img src="assets/projects/tracker-phone.jpg" alt="The tracker's Log tab, planning the next workout's weights">
+          </a>
         </article>
 
-        <article class="card project-card" data-tags="AI, Automation">
-          <div class="project-thumb" aria-hidden="true">⚙️</div>
-          <h3>Project title</h3>
-          <p>One or two sentences: the problem, what you built, and the result. Numbers help (e.g. "saved 3 hours a week").</p>
-          <div class="card-links">
-            <a href="#">Demo</a>
-            <a href="#">Write-up</a>
+        <article class="carousel-slide featured" aria-roledescription="slide" aria-label="Accounting Cycle Practice">
+          <div class="featured-text">
+            <p class="eyebrow">For my students · Accounting I</p>
+            <h2>Accounting Cycle Practice</h2>
+            <p>An interactive version of the Chapter 4 comprehensive problem I built for my Principles of Accounting I class at SAU Tech. Students work one month of a new service business, from the first journal entry to the post-closing trial balance.</p>
+            <ul class="featured-list">
+              <li>Every cell is checked as you go: green ✓ for right, red ✗ for another look</li>
+              <li>"New problem" creates a fresh business and numbers, with a shareable code so a whole class can work the same version</li>
+              <li>Journal, T accounts, trial balances, financial statements, closing entries and ratios, plus an answer key</li>
+            </ul>
+            <p class="muted">Work saves in your browser, so you can come back to it.</p>
+            <div class="btn-row">
+              <a class="btn" href="projects/accounting-cycle.html" target="_blank" rel="noopener">Try the problem</a>
+            </div>
           </div>
-          <div class="tags"><span class="tag">AI</span><span class="tag">Automation</span></div>
+          <a class="shot" href="projects/accounting-cycle.html" target="_blank" rel="noopener" aria-label="Open Accounting Cycle Practice">
+            <img src="assets/projects/accounting-preview.jpg" alt="The accounting worksheet, with the first journal entry checked correct">
+          </a>
+        </article>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="carousel-arrow" type="button" data-carousel-prev aria-label="Previous project">←</button>
+        <div class="carousel-dots" role="tablist" aria-label="Choose a project"></div>
+        <button class="carousel-arrow" type="button" data-carousel-next aria-label="Next project">→</button>
+      </div>
+    </section>
+
+    <!-- ===== PROJECT TILES — one card per project ===== -->
+    <section style="margin-top: 72px">
+      <h2>All projects</h2>
+      <div class="grid grid-2" style="margin-top: 20px">
+        <article class="card project-card">
+          <img class="project-thumb" src="assets/projects/tracker-preview.jpg" alt="" loading="lazy">
+          <h3>5×5 Workout Tracker</h3>
+          <p>A StrongLifts 5×5 log that plans each workout's weights, does the plate math, and charts progress.</p>
+          <div class="card-links">
+            <a href="projects/5x5-tracker.html" target="_blank" rel="noopener">Try it</a>
+          </div>
+          <div class="tags"><span class="tag">AI</span><span class="tag">Fitness</span></div>
         </article>
 
-        <article class="card project-card" data-tags="Data">
-          <div class="project-thumb" aria-hidden="true">📊</div>
-          <h3>Project title</h3>
-          <p>Describe a school, work or personal project. What was your role? What did you learn?</p>
+        <article class="card project-card">
+          <img class="project-thumb" src="assets/projects/accounting-preview.jpg" alt="" loading="lazy">
+          <h3>Accounting Cycle Practice</h3>
+          <p>A self-checking Chapter 4 comprehensive problem for my Accounting I students, with endless fresh versions.</p>
           <div class="card-links">
-            <a href="#">Details</a>
+            <a href="projects/accounting-cycle.html" target="_blank" rel="noopener">Try it</a>
           </div>
-          <div class="tags"><span class="tag">Data</span></div>
-        </article>
-
-        <article class="card project-card" data-tags="Creative">
-          <div class="project-thumb" aria-hidden="true">🎨</div>
-          <h3>Project title</h3>
-          <p>Projects don't have to be code. Writing, design, events, a club you ran — all of it shows who you are.</p>
-          <div class="card-links">
-            <a href="#">See more</a>
-          </div>
-          <div class="tags"><span class="tag">Creative</span></div>
+          <div class="tags"><span class="tag">Teaching</span><span class="tag">Accounting</span></div>
         </article>
       </div>
     </section>

@@ -3,93 +3,120 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About · Your Name</title>
-  <meta name="description" content="Personal website of Your Name — about me, projects, resume and AI experiments.">
+  <title>Ryan W Taylor</title>
+  <meta name="description" content="Personal website of Ryan W Taylor — Business Faculty at SAU Tech, dad, Razorback fan and bass fisherman.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👋</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ryan W Taylor">
+  <meta property="og:title" content="Ryan W Taylor">
+  <meta property="og:description" content="the road goes on forever and the party never ends">
+  <meta property="og:url" content="https://ryanwtaylor.com/">
+  <meta property="og:image" content="https://ryanwtaylor.com/assets/brand/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ryan W Taylor quadbox logo: an R, two cartoon dinosaurs, a largemouth bass and a basketball">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
-<body>
+<body class="home">
   <header id="site-header"></header>
 
-  <main class="container">
-    <!-- ===== HERO — your one-line intro ===== -->
-    <section class="hero">
-      <div>
-        <p class="eyebrow">Hi, I'm</p>
-        <h1>Your Name.</h1>
-        <p class="lead">
-          A one-or-two sentence intro. What do you do, what do you care about,
-          and what are you curious about right now? Keep it human.
+  <main>
+    <!-- =====================================================================
+         BANNER — rotating background images behind your name.
+         TO CHANGE THE PHOTOS: put your images in assets/banner/ and edit the
+         <img> lines below. Add or remove as many as you like; they rotate in order.
+         Photos are shown semi-transparent; adjust --banner-photo-opacity in css/style.css.
+         ===================================================================== -->
+    <section class="banner" data-banner aria-label="Introduction">
+      <div class="banner-slides">
+        <img src="assets/banner/family.jpg" alt="">
+        <img src="assets/banner/bass.jpg" alt="">
+        <img src="assets/banner/tailgate.jpg" alt="">
+        <img src="assets/banner/casting.jpg" alt="">
+        <img src="assets/banner/beach.jpg" alt="">
+        <img src="assets/banner/little-slugger.jpg" alt="">
+        <img src="assets/banner/wakesurf.jpg" alt="">
+      </div>
+
+      <div class="container banner-content">
+        <p class="banner-kicker">El Dorado, Arkansas</p>
+        <h1>Ryan W Taylor</h1>
+        <p class="banner-tagline">
+          <a href="https://www.youtube.com/results?search_query=Robert+Earl+Keen+The+Road+Goes+On+Forever" target="_blank" rel="noopener">The road goes on forever, the party never ends. <span aria-hidden="true">♪</span></a>
         </p>
-        <div class="btn-row">
-          <a class="btn" href="projects.html">See my projects</a>
-          <a class="btn btn-ghost" href="resume.html">Read my resume</a>
+
+        <!-- ===== ABOUT ME ROLODEX — one phrase per <li>, each finishing the sentence "I'm Ryan →"; they flip every few seconds. Click to advance. ===== -->
+        <div class="rolodex" data-rolodex>
+          <span class="rolodex-label">I'm Ryan <span class="rolodex-arrow" aria-hidden="true">→</span></span>
+          <button class="rolodex-window" type="button" aria-label="Next fact about Ryan">
+            <ul class="rolodex-cards">
+              <li>business faculty at SAU Tech</li>
+              <li>dad to Owen (4) &amp; Reid (1)</li>
+              <li>husband to Haley (age N/A)</li>
+              <li>full-time Razorback fan</li>
+              <li>also pulling for the Reds &amp; Spurs</li>
+              <li>avid Bass Fisherman</li>
+              <li>at Lake Ouachita when I can</li>
+              <li>little league coach</li>
+              <li>part-time runner</li>
+              <li>reading <i>The Breaks of the Game</i></li>
+              <li>listening to Red Clay Strays, Tyler Childers, Johnny Blue Skies</li>
+              <li>watching Widow's Bay, Blaze &amp; The Monster Machines, Dancing with the Stars (Haley)</li>
+            </ul>
+          </button>
+          <span class="rolodex-count" aria-hidden="true"></span>
         </div>
       </div>
-      <!-- Swap the initials for a photo: <div class="avatar"><img src="assets/me.jpg" alt="Photo of Your Name"></div> -->
-      <div class="avatar" aria-hidden="true">YN</div>
+
+      <div class="banner-dots" role="tablist" aria-label="Choose banner image"></div>
     </section>
 
-    <!-- ===== ABOUT — a short story ===== -->
-    <section>
-      <p class="eyebrow">About me</p>
-      <h2>The short version</h2>
-      <p class="lead">
-        A paragraph or two about where you're from, how you got into what you do,
-        and what drives you. Think of how you'd introduce yourself to someone
-        interesting at a dinner party — not a job interview.
-      </p>
-    </section>
-
-    <!-- ===== PERSONALITY — things that make you, you ===== -->
-    <section>
-      <p class="eyebrow">Beyond the resume</p>
-      <h2>A few things about me</h2>
-      <div class="grid">
-        <article class="card">
-          <div class="card-emoji">🏔️</div>
-          <h3>Hobby or passion</h3>
-          <p>Something you do for fun and why you love it.</p>
-        </article>
-        <article class="card">
-          <div class="card-emoji">📚</div>
-          <h3>Currently reading</h3>
-          <p>A book, podcast or newsletter that's shaping how you think.</p>
-        </article>
-        <article class="card">
-          <div class="card-emoji">🤖</div>
-          <h3>Learning right now</h3>
-          <p>Building with AI — prompting, coding with assistants, and shipping small things. <a href="ai.html">See the AI Lab →</a></p>
-        </article>
-        <article class="card">
-          <div class="card-emoji">☕</div>
-          <h3>Fun fact</h3>
-          <p>Something surprising or quirky that people remember you for.</p>
-        </article>
+    <!-- ===== TILES — links to the other pages ===== -->
+    <section class="container tiles-section">
+      <div class="tiles">
+        <a class="tile" href="projects.html">
+          <span class="tile-num">01</span>
+          <span class="tile-title">Projects</span>
+          <span class="tile-desc">Things I've built, taught and tinkered with.</span>
+          <span class="tile-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="tile" href="resume.html">
+          <span class="tile-num">02</span>
+          <span class="tile-title">Resume</span>
+          <span class="tile-desc">Where I've been: SAU Tech, Do College Better, the U of A.</span>
+          <span class="tile-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="tile" href="ai.html">
+          <span class="tile-num">03</span>
+          <span class="tile-title">AI Lab</span>
+          <span class="tile-desc">How I'm learning to prompt and build with AI, including this site.</span>
+          <span class="tile-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="tile" href="contact.html">
+          <span class="tile-num">04</span>
+          <span class="tile-title">Say hello</span>
+          <span class="tile-desc">Teaching, business, fishing spots, or AI. Drop me a line.</span>
+          <span class="tile-arrow" aria-hidden="true">→</span>
+        </a>
       </div>
     </section>
 
-    <!-- ===== QUICK FACTS ===== -->
-    <section>
-      <div class="grid">
-        <div class="card">
-          <h2>Quick facts</h2>
-          <ul class="fact-list">
-            <li><b>Based in</b> City, Country</li>
-            <li><b>Focus</b> Your field / role</li>
-            <li><b>Open to</b> Opportunities, collaborations, coffee chats</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h2>Say hello</h2>
-          <p class="muted">The best way to reach me is email. I'm always happy to talk about projects, ideas, or AI tools you're excited about.</p>
-          <a class="btn" href="mailto:you@example.com">Email me</a>
-        </div>
-      </div>
+    <!-- ===== HOW I GOT HERE ===== -->
+    <section class="container">
+      <p class="eyebrow">How I got here</p>
+      <ol class="journey">
+        <li><span class="when">2011</span><span class="where">Parkers Chapel High School</span></li>
+        <li><span class="when">2015, 2016</span><span class="where">University of Arkansas</span></li>
+        <li><span class="when">2016 – 2024</span><span class="where">Do College Better</span></li>
+        <li class="is-now"><span class="when">Now</span><span class="where">SAU Tech</span></li>
+      </ol>
     </section>
   </main>
 
