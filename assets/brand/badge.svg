@@ -21,16 +21,36 @@
       <circle cx="74" cy="50" r="4.5" fill="#c7dcff" opacity=".6"/>
       <circle cx="84" cy="35" r="7.5" fill="#fff"/><circle cx="86" cy="35.5" r="4" fill="#0b1626"/><circle cx="87.5" cy="33.8" r="1.4" fill="#fff"/>
       <path d="M80 54 q10 7 21-3" stroke="#0b1626" stroke-width="2.4" fill="none" stroke-linecap="round"/></g></g>
-  <g transform="translate(42,266) scale(0.72)"><g>
-  <path d="M0 40 L-34 14 Q-28 40 -34 66 Z" fill="#1d4fa3"/>
-  <path d="M10 18 Q60 -14 120 6 Q160 20 176 40 Q160 62 118 72 Q60 88 10 62 Q0 52 0 40 Q0 28 10 18 Z" fill="#2563c9"/>
-  <path d="M16 54 Q70 82 118 70 Q150 62 170 44 Q150 70 110 76 Q60 86 16 60 Z" fill="#cfe0ff"/>
-  <path d="M30 34 Q60 30 90 38 Q120 46 150 40" stroke="#12284a" stroke-width="5" fill="none" stroke-linecap="round" opacity=".55"/>
-  <path d="M50 10 Q70 -14 98 -4 Q90 6 96 8 Q72 6 50 10 Z" fill="#1d4fa3"/>
-  <path d="M176 40 Q168 46 156 46" stroke="#0b1626" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <circle cx="150" cy="28" r="7" fill="#fff"/><circle cx="151.5" cy="28" r="3.6" fill="#0b1626"/>
-  <path d="M66 70 Q74 86 88 84 Q80 76 82 70 Z" fill="#1d4fa3"/>
-</g></g>
+  <g transform="translate(0,246) scale(0.79)"><g>
+  <defs>
+    <linearGradient id="bassBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d4fa3"/><stop offset="0.55" stop-color="#2f6fd6"/><stop offset="1" stop-color="#d6e5ff"/>
+    </linearGradient>
+  </defs>
+  <!-- tail -->
+  <path d="M48 62 L10 28 Q22 46 18 62 Q22 78 10 98 Z" fill="#1d4fa3"/>
+  <!-- spiny dorsal + soft dorsal -->
+  <path d="M86 34 L92 12 L98 30 L104 9 L110 28 L116 8 L122 27 L128 9 L134 28 L139 14 L142 30 Z" fill="#1d4fa3"/>
+  <path d="M142 30 Q152 6 172 14 Q176 24 168 32 Z" fill="#1d4fa3"/>
+  <!-- anal and pelvic fins -->
+  <path d="M120 92 Q130 112 148 108 Q146 96 140 90 Z" fill="#1d4fa3"/>
+  <path d="M160 88 Q160 104 172 104 Q172 94 170 88 Z" fill="#1d4fa3"/>
+  <!-- body: deep, stocky -->
+  <path d="M46 62 C62 40 96 28 132 26 C164 23 192 28 206 42 L212 50 L168 70 L226 82 C212 92 188 98 150 99 C112 102 74 94 46 66 Z" fill="url(#bassBody)"/>
+  <!-- blotchy lateral band -->
+  <g fill="#12284a" opacity=".5"><ellipse cx="66" cy="63" rx="9" ry="5"/><ellipse cx="84" cy="60" rx="10" ry="6"/><ellipse cx="103" cy="62" rx="11" ry="7"/><ellipse cx="123" cy="59" rx="10" ry="7"/><ellipse cx="142" cy="61" rx="10" ry="6"/><ellipse cx="158" cy="58" rx="7" ry="5"/></g>
+  <!-- gill cover -->
+  <path d="M160 34 Q150 62 160 92" stroke="#12284a" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".7"/>
+  <!-- big gaping bucket mouth: hinge sits behind the eye, lower jaw juts past the upper -->
+  <path d="M212 50 L168 70 L226 82 Q232 74 226 66 Q220 56 212 50 Z" fill="#0b1626"/>
+  <path d="M212 50 Q192 58 168 70" stroke="#cfe0ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M168 70 Q198 78 226 82" stroke="#cfe0ff" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- pectoral fin -->
+  <path d="M146 72 Q128 78 124 90 Q140 88 150 78 Z" fill="#1d4fa3" opacity=".9"/>
+  <!-- eye -->
+  <circle cx="184" cy="42" r="8" fill="#ffffff"/><circle cx="186" cy="42" r="4.4" fill="#0b1626"/><circle cx="187.6" cy="40.2" r="1.5" fill="#ffffff"/>
+</g>
+</g>
   <g transform="translate(293.0,293.0)"><g>
   <circle cx="0" cy="0" r="58" fill="#eaf2ff"/>
   <g fill="none" stroke="#12284a" stroke-width="5" stroke-linecap="round">
